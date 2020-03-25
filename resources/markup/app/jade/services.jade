@@ -1,0 +1,61 @@
+include config/general
+include mixin/general
+
+- var title = 'Services';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body
+    include module/support
+      
+    div.wrap
+      
+      include pattern/header
+
+      include module/honeycomb-bottom
+      
+      div.middle
+        
+        div.services
+          div.services__center.center
+            h1.heading Услуги
+          div.services__main
+            div.services__list
+              div.services__item
+                div.services__media
+                  picture.services__media-img
+                    source(srcset="img/tmp/04.webp", type="image/webp")
+                    img(src="img/tmp/04.jpg" alt="")
+                div.services__content
+                  div.services__title Разработка
+                  ul.list-basic
+                    li Разработка промо-сайтов, langing pages
+                    li Корпоративные сайты
+                    li E-commerce
+                    li Стартапы и сервисы
+                    li Высоконагруженные веб-сайты
+                    li Мобильные приложения
+                    li Программы для Desktop
+              div.services__item
+                div.services__media
+                  picture.services__media-img
+                    source(srcset="img/tmp/04.webp", type="image/webp")
+                    img(src="img/tmp/04.jpg" alt="")
+                div.services__content
+                  div.services__title Дизайн
+                  ul.list-basic
+                    li Разработка промо-сайтов, langing pages
+                    li Корпоративные сайты
+                    li E-commerce
+                    li Стартапы и сервисы
+                    li Высоконагруженные веб-сайты
+                    li Мобильные приложения
+                    li Программы для Desktop
+                    
+        include module/feedback
+                            
+      include pattern/footer          
+    include pattern/script

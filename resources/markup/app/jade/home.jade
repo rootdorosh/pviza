@@ -1,0 +1,78 @@
+include config/general
+include mixin/general
+
+- var title = 'Home';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body.body-start
+    include module/support
+    
+    div.welcome
+      div.welcome__list
+      div.welcome__wrap
+        div.welcome__logo
+          svg.welcome__logo-icon: use(xlink:href="img/sprite.svg#logo")
+        div.welcome__set
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          
+    div.wrap.wrap-start
+      
+      include pattern/header
+      
+      include module/honeycomb-top
+      include module/honeycomb-bottom
+            
+      div.middle
+        div.about
+          div.about__center.center
+            div.about__wrap
+              div.about__container
+                div.about__caption.
+                  Мы smart-компания из Украины, Киев.<br>
+                  Будем рады сделать все возможное и невозможное для стремительного 
+                  подъема Вашего бизнеса на новые горизонты успеха!
+                a.about__info(href="#") делаем сайты с 1999 года
+              div.about__affirmation
+                div.about__affirmation-main
+                  script.
+                    var aboutData = {
+                      0: {
+                        'label': 'мы утверждаем',
+                        'caption': 'Мы ваш зонтик в пространстве постоянных изменений в интернет'
+                      },
+                      1: {
+                        'label': 'lorem ipsum dolor',
+                        'caption': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, sequi!'
+                      },
+                      2: {
+                        'label': 'lorem ipsum dolor sit',
+                        'caption': 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias quis nobis adipisci!'
+                      },
+                    };
+                  div.about__affirmation-left
+                    div.about__affirmation-number
+                    div.about__affirmation-label
+                  div.about__affirmation-right
+                    div.about__affirmation-inner
+                      div.about__affirmation-caption
+        
+        div.portfolio
+          div.portfolio__center.center
+            div.portfolio__wrap
+              h4.portfolio__description Несколько наших работ
+            include module/portfolio-list
+                      
+        include module/our-work
+        include module/in-work
+                        
+      include pattern/footer            
+    include pattern/script

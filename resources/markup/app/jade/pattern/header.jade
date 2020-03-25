@@ -1,0 +1,53 @@
+// header 
+header.header
+
+  div.header__main
+    div.header__center.center
+      div.header__wrap
+        div.header__logo
+          div.logo
+            a.logo__link(href="/")
+              svg.logo__img: use(xlink:href="img/sprite.svg#logo")
+        div.header__main
+          div.header__panel
+            nav.header__menu-main.menu-main
+              ul.menu-main__list
+                li.menu-main__item
+                  a.menu-main__link(href="#") О нас
+                li.menu-main__item
+                  a.menu-main__link.active(href="#") Портфолио
+                li.menu-main__item
+                  a.menu-main__link(href="#") Услуги
+                li.menu-main__item
+                  a.menu-main__link(href="#") Технологии
+                li.menu-main__item
+                  a.menu-main__link(href="#") Контакты
+            div.header__btn.js-menu-btn-open
+              svg.header__btn-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                
+  div.header__menu-basic
+    div.menu-basic
+      div.menu-basic__center.center
+        div.menu-basic__wrap
+          div.menu-basic__close.js-menu-btn-close
+            svg.menu-basic__close-icon: use(xlink:href="img/sprite.svg#close")
+          div.menu-basic__main
+            div.menu-basic__panel
+              nav.menu-basic__nav
+                ul.menu-basic__nav-list
+                  li.menu-basic__nav-item
+                    a.menu-basic__nav-link(href="#") Услуги
+                  li.menu-basic__nav-item
+                    a.menu-basic__nav-link(href="#") Портфолио
+                  li.menu-basic__nav-item
+                    a.menu-basic__nav-link(href="#") Технологии
+                  li.menu-basic__nav-item
+                    a.menu-basic__nav-link(href="#") Контакты
+              div.menu-basic__info
+                div.menu-basic__info-title Просчет стоимости
+                div.menu-basic__info-phone
+                  a.menu-basic__info-link(href="tel:+380506041054") +38 050 604 10 54
+                div.menu-basic__info-email
+                  a.menu-basic__info-link(href="maito:we@sunbee.studio") we@sunbee.studio
+
+// /.header 

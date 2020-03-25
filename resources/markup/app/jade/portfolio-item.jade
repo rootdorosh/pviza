@@ -1,0 +1,178 @@
+include config/general
+include mixin/general
+
+- var title = 'Portfolio item';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body.body-portfolio-item
+    include module/support
+      
+    div.wrap
+      
+      include pattern/header
+      
+      div.middle
+        
+        div.sections
+          
+          div.section.data#data(style="background-color: #F8C14B;")
+            div.data__backdrop
+            div.data__general
+              div.data__inner
+                div.data__wrap
+                  div.data__center.center
+                    div.data__main
+                      div.data__row
+                        div.data__column
+                          div.data__content
+                            p
+                              |Клиент: 
+                              span.data__info ООО Три стар
+                            p
+                              |Выполненные работы: 
+                              span.data__info UX, UI & Interaction design. Front-end and back-end development.
+                            p
+                              |Состав команды: 
+                              span.data__info Project strategy, UX research, web design (IA, IxD, UX/UI design, prototyping, animation), coding.
+                            p
+                              |Технологии. Окружение. Инструменты: 
+                              span.data__info PHP Yii2, CSS3, JS
+                              span.data__info Ubuntu 16.04, MySQL
+                              span.data__info Jira, Bitbucket, Trello, E-mail, Messagers
+
+                        div.data__column
+                          div.data__content
+                            h1.data__heading Золотой Век
+                            p корпоративный сайт для кондитерской компании подного цикла производства. 
+                            p Целевая аудитория: 40+
+                            p Задача: обновить корпоративный сайт
+                            p Подготовка материалов: Фотографии — Шимбаровский Александр <br>Тексты — Директор по маркетингу клиента Галина
+                  div.data__panel
+                    div.data__panel-btn
+                      svg.data__panel-icon: use(xlink:href="img/sprite.svg#prev")
+                      div.data__panel-caption Работа №4
+                    div.data__panel-btn
+                      svg.data__panel-icon: use(xlink:href="img/sprite.svg#next")
+                      div.data__panel-caption Работа №2
+
+          div.section.color-spectrum#color-spectrum
+            div.color-spectrum__backdrop(style="background-color: red;")
+            div.color-spectrum__general
+              div.color-spectrum__inner
+                div.color-spectrum__center.center
+                  div.color-spectrum__wrap
+                    div.color-spectrum__info
+                      div.color-spectrum__heading Цветовая гамма
+                      div.color-spectrum__caption Цветовая гамма сайта использовалась с брендбука клиента.
+                    div.color-spectrum__scope
+                      div.color-spectrum__list
+                        div.color-spectrum__item(style="background-color: #FEE3A9;")
+                        div.color-spectrum__item(style="background-color: #432D2D;")
+                        div.color-spectrum__item(style="background-color: rgba(67,45,45,21);")
+                        div.color-spectrum__item(style="background-color: #FEE3A9;")
+                        div.color-spectrum__item(style="background-color: #432D2D;")
+                        div.color-spectrum__item(style="background-color: rgba(67,45,45,21);")
+          
+          div.section.fonts#fonts
+            div.fonts__backdrop(style="background-color: green;")
+            div.fonts__general
+              div.fonts__inner
+                div.fonts__center.center
+                  div.fonts__wrap
+                    div.fonts__info
+                      div.fonts__media
+                        img.fonts__media-img(src="img/tmp/fonts.svg", alt="")
+                    div.fonts__scope
+                      div.fonts__heading Шрифты
+                      div.fonts__caption Бренбуковские шрифты Alegreya Sans и Philosopher
+                      div.fonts__examples
+                        div.fonts__example-1
+                          div.fonts__example-1-wrap
+                            img.fonts__example-img(src="img/tmp/letters.svg", alt="")
+                        div.fonts__example-2
+                          div.fonts__example-2-wrap
+                            img.fonts__example-img(src="img/tmp/quote.svg", alt="")
+          
+          div.section.preview#preview
+            div.preview__backdrop
+            div.preview__general
+              div.preview__inner
+                div.preview__center
+                  div.preview__wrap
+                    div.preview__left
+                      div.preview__media
+                        picture.preview__img
+                          source(srcset="img/tmp/02.webp", type="image/webp")
+                          img(src="img/tmp/02.jpg" alt="")
+                    div.preview__right
+                      div.preview__media
+                        picture.preview__img
+                          source(srcset="img/tmp/03.webp", type="image/webp")
+                          img(src="img/tmp/03.jpg" alt="")
+
+          div.section.view#view
+            div.view__backdrop
+            div.view__general
+              div.view__inner
+                div.view__head
+                  div.view__center.center
+                    div.view__wrap
+                      div.view__heading Веб-сайт
+                      div.view__caption Цветовая гамма сайта использовалась с брендбука клиента.
+                div.view__body(style="background-color: #432D2D;")
+                  div.view__center.center
+                    div.view__media
+                      img.view__img(data-src='{"webp":"img/tmp/view.webp","any":"img/tmp/view.jpg"}', alt="")
+          
+          div.section.layouts#layouts
+            div.layouts__backdrop
+            div.layouts__general
+              div.layouts__inner
+                div.layouts__center
+                  div.layouts__list
+                    div.layouts__col
+                      //- item
+                      div.layouts__item
+                        div.layouts__media
+                          picture.layouts__img
+                            source(srcset="img/layouts/01.webp", type="image/webp")
+                            img(src="img/layouts/01.jpg" alt="")
+                      //- item
+                      div.layouts__item
+                        div.layouts__media
+                          picture.layouts__img
+                            source(srcset="img/layouts/02.webp", type="image/webp")
+                            img(src="img/layouts/02.jpg" alt="")
+                    div.layouts__col
+                      //- item
+                      div.layouts__item
+                        div.layouts__media
+                          picture.layouts__img
+                            source(srcset="img/layouts/03.webp", type="image/webp")
+                            img(src="img/layouts/03.jpg" alt="")
+                      //- item
+                      div.layouts__item
+                        div.layouts__media
+                          picture.layouts__img
+                            source(srcset="img/layouts/04.webp", type="image/webp")
+                            img(src="img/layouts/04.jpg" alt="")
+                    div.layouts__col
+                      //- item
+                      div.layouts__item
+                        div.layouts__media
+                          picture.layouts__img
+                            source(srcset="img/layouts/05.webp", type="image/webp")
+                            img(src="img/layouts/05.jpg" alt="")
+                      //- item
+                      div.layouts__item
+                        div.layouts__media
+                          picture.layouts__img
+                            source(srcset="img/layouts/06.webp", type="image/webp")
+                            img(src="img/layouts/06.jpg" alt="")
+                                
+      include pattern/footer          
+    include pattern/script

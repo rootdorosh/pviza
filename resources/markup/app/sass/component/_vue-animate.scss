@@ -1,0 +1,129 @@
+// fade
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 1s ease 0s;
+}
+
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+// product bg
+.product-bg-enter-active,
+.product-bg-leave-active {
+  transition: transform 1s ease 0s, opacity 1s ease 0s;
+}
+
+.product-bg-enter,
+.product-bg-leave-to {
+  transform: rotate(-5deg);
+  opacity: 0;
+}
+
+// product fill
+.product-fill-enter-active,
+.product-fill-leave-active {
+  transition: transform 1s ease 0s, opacity 1s ease 0s;
+}
+
+.product-fill-enter,
+.product-fill-leave-to {
+  transform: rotate(5deg);
+  opacity: 0;
+}
+
+// product details
+.product-details-enter-active,
+.product-details-leave-active {
+  transition-property: opacity;
+  transition-timing-function: ease;
+}
+
+.product-details-enter,
+.product-details-leave-to {
+  opacity: 0;
+}
+
+.product-details-enter-active {
+  transition-duration: 1s;
+  transition-delay: 1s;
+}
+
+.product-details-leave-active {
+  transition-duration: .3s;
+  transition-delay: 0s;
+}
+
+// product image
+.product-image-enter-active,
+.product-image-leave-active {
+  transition-property: opacity, transform;
+  transition-duration: 1s, 1s;
+  transition-timing-function: ease, ease;
+}
+
+.product-image-enter-active {
+  transition-delay: 1.5s;
+}
+
+.product-image-leave-active {
+  transition-delay: 0s;
+}
+
+.product-image-enter {
+  transform: rotate(0deg);
+  opacity: 0;
+}
+
+.product-image-leave-to {
+  transform: rotate(-5deg);
+  opacity: 0;
+}
+
+// product heading
+.product-heading-enter-active,
+.product-heading-leave-active {
+  transition: transform 1s ease 0s, opacity 1s ease 0s;
+}
+
+.product-heading-enter,
+.product-heading-leave-to {
+  transform: translateY(-10px);
+  opacity: 0;
+}
+
+// product description
+.product-description-enter-active,
+.product-description-leave-active {
+  transition: opacity 1s ease 0s;
+}
+
+.product-description-enter,
+.product-description-leave-to {
+  opacity: 0;
+}
+
+// product more
+.product-more-enter-active,
+.product-more-leave-active {
+  transition: transform 1s ease 0s, opacity 1s ease 0s;
+}
+
+.product-more-enter,
+.product-more-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+// product description
+.product-barcode-enter-active,
+.product-barcode-leave-active {
+  transition: transform 1s ease 0s, opacity 1s ease 0s;
+}
+
+.product-barcode-enter,
+.product-barcode-leave-to {
+  transform: translateX(-10px);
+  opacity: 0;
+}

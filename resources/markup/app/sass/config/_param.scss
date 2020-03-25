@@ -1,0 +1,27 @@
+// font
+$font-family-default: 'Muller', sans-serif;
+
+// screen
+$viewport-xl: 1391px;
+$viewport-pre-xl: $viewport-xl - 1px;
+$viewport-post-xl: $viewport-xl + 1px;
+
+$viewport-lg: 1200px;
+$viewport-pre-lg: $viewport-lg - 1px;
+$viewport-post-lg: $viewport-lg + 1px;
+
+$viewport-md: 992px;
+$viewport-pre-md: $viewport-md - 1px;
+$viewport-post-md: $viewport-md + 1px;
+
+$viewport-sm: 768px;
+$viewport-pre-sm: $viewport-sm - 1px;
+$viewport-post-sm: $viewport-sm + 1px;
+
+$viewport-xs: 480px;
+$viewport-pre-xs: $viewport-xs - 1px;
+$viewport-post-xs: $viewport-xs + 1px;
+
+// constraints
+$min: min-width;
+$max: max-width;

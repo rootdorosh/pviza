@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+<% if(defs) {%><% } %><% _.forEach( icons, function( icon ){ %>
+  <symbol id="<%= icon.id %>" viewBox="<%= icon.svg.viewBox %>">
+    <%= icon.svg.content %>
+  </symbol>
+<%}); %>
+</svg>

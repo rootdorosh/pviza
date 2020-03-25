@@ -1,0 +1,26 @@
+{
+  "name": "renum",
+  "description": "",
+  "main": "",
+  "authors": [
+    ""
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.1",
+    "bowser": "^1.4.6",
+    "bootstrap-sass": "^3.3.7",
+    "jquery.resizeend": "^0.2.1",
+    "jquery.maskedinput": "^1.4.1",
+    "slick-carousel": "^1.6.0"
+  }
+}

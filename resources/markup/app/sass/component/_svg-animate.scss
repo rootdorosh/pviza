@@ -1,0 +1,157 @@
+// sunbee
+
+.sunbee-wings,
+.sunbee-wing {
+	transform-origin: center center;
+	animation-duration: 1s;
+	animation-timing-function: ease-out;
+	animation-iteration-count: infinite;
+}
+
+.sunbee-wings {
+	animation-name: wings;
+}
+
+@keyframes wings {
+	from {
+		transform: rotate3d(0, 1, 0, 0deg);
+	}
+	50% {
+		transform: rotate3d(0, 1, 0, 50deg);
+	}
+	to {
+		transform: rotate3d(0, 1, 0, 0deg);
+	}
+}
+
+.sunbee-wing-lt,
+.sunbee-wing-rb {
+	animation-name: wing-1;
+}
+
+.sunbee-wing-rt,
+.sunbee-wing-lb {
+	animation-name: wing-2;
+}
+
+@keyframes wing-1 {
+	from {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(2deg);
+	}
+	to {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes wing-2 {
+	from {
+		transform: rotate(0deg);
+	}
+	50% {
+		transform: rotate(-2deg);
+	}
+	to {
+		transform: rotate(0deg);
+	}
+}
+
+.sunbee-paused {
+  .sunbee-wings,
+  .sunbee-wing {
+    animation-play-state: paused;
+  }
+}
+
+
+// butterfly
+.butterfly {
+	position: relative;
+	z-index: 1;
+
+	&__loop-1 {
+		width: 600px;
+		height: 600px;
+		position: absolute;
+		top: -150px;
+		left: 25%;
+		animation-name: butterfly-loop-1;
+		animation-duration: 18.9s;
+		animation-iteration-count: infinite;
+		animation-direction: alternate-reverse;
+		animation-timing-function: linear;
+	}
+
+	&__loop-2 {
+		width: 100%;
+		height: 100%;
+		animation-name: butterfly-loop-2;
+		animation-duration: 6.3s;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
+
+	&__icon {
+	  width: 100px;
+	  height: 100px;
+		text-align: center;
+	  position: absolute;
+	  top: 100px;
+	  left: 100px;
+	  transform: rotate(60deg) translateZ(0);
+	}
+
+	&__icon svg {
+		width: 100px;
+		height: 72px;
+	  animation-name: butterfly-icon;
+	  animation-duration: 0.3s;
+	  animation-iteration-count: infinite;
+	  animation-direction: alternate;
+	  animation-timing-function: ease;
+	}
+}
+
+@keyframes butterfly-loop-1 {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(200px, 0);
+  }
+  50% {
+    transform: translate(30px, 50px);
+  }
+  75% {
+    transform: translate(0px, 120px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes butterfly-loop-2 {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes butterfly-icon {
+	0% {
+		width: 50px;
+		height: 100px;
+	}
+	80% {
+		width: 100px;
+		height: 100px;
+	}
+	100% {
+		width: 100px;
+		height: 100px;
+	}
+}

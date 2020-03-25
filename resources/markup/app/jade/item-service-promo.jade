@@ -1,0 +1,116 @@
+include config/general
+include mixin/general
+
+- var title = 'Item service promo';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body
+    include module/support
+      
+    div.wrap
+      
+      include pattern/header
+
+      include module/honeycomb-bottom
+      
+      div.middle
+        
+        div.article
+          div.article__center.center
+            h1.heading Разработка  промосайтов, лендинг страниц
+          
+          div.specification.js-animation
+            div.specification__item
+              div.specification__wrap
+                div.specification__inner
+                  svg.specification__bg(style="fill: #BFF1F3;"): use(xlink:href="img/sprite.svg#pattern-left")
+                  div.specification__content
+                    div.specification__row Успех? 
+                    div.specification__row Прибыль?
+                    div.specification__row Популярность?
+            div.specification__item
+              div.specification__wrap
+                div.specification__inner
+                  svg.specification__bg(style="fill: #FF714E;"): use(xlink:href="img/sprite.svg#pattern-right")
+                  div.specification__content
+                    div.specification__row Интернет
+                    div.specification__row.equally =
+                    div.specification__row возможности
+            
+          div.article__center.center
+            div.quote.js-animation
+              div.quote__body
+                div.quote__content Каждый день у нас есть 50 шансов чтобы стать богатым — текст полный забыла
+              div.quote__foot
+                div.quote__caption Китайская пословица
+                
+            div.text-block
+              //- item
+              div.text-block__item
+                div.text-block__wrap
+                  div.text-block__heading Когда промо-сайт идеальное решение?
+                  div.text-block__content
+                    p.
+                      Вы начинающий предприниматель, у вас есть идея, но вы не готовы на большие вложения 
+                    p.
+                      Ваша компания  решила выделить отдельные продукты и услуги, чтобы увеличить рынок сбыта, 
+                      улучшить показатели продаж, привлечь новую аудиторию У вас один продукт или услуга 
+                    p.
+                      Вы собираетесь провести мероприятие и ваша невероятная программа требует достойного анонса
+                    p.
+                      И другие случаи, требующие особого представления
+              //- item
+              div.text-block__item
+                div.text-block__wrap
+                  div.text-block__heading Наш порядок выполнения работ
+                  div.text-block__content
+                    p.
+                      Тщательно изучим задачу, определим приоритеты и поставим сроки 
+                    p.
+                      Создадим дизайн-концепцию
+                    p.
+                      Напишем тексты, проведем фотосъемку и видеосъемку, разработаем художественные материалы, подберем лучшие фотографии
+                    p.
+                      Проведем сборку программного продукта, оттестируем, наполним подготовленным заранее контентом
+                    p.
+                      Мы не забыли, весь процесс будет у вас как на ладони, благодаря Workflow и  нашей системе ведения проектов
+                    p.
+                      Мы точно знаем, как расскрыть именно Ваш потенциал
+              //- item
+              div.text-block__item.align-center
+                div.text-block__polygon
+                  div.polygon
+                    svg.polygon__bg: use(xlink:href="img/sprite.svg#polygon")
+                    svg.polygon__fill: use(xlink:href="img/sprite.svg#polygon")
+                    div.polygon__details
+                      div.polygon__scope
+                        div.polygon__main
+                          div.polygon__counter 7
+                          div.polygon__info
+                            div.polygon__label Минимальная команда
+                            div.polygon__caption для создания промо
+                
+              //- item
+              div.text-block__item.align-center.list
+                div.text-block__wrap
+                  div.text-block__heading Стоимость и сроки
+                  div.text-block__content
+                    ul.list-basic
+                      li Любая работа зависит от объема и сложности выполнения.
+                      li Стоимость разработки промо-сайта  от $3000
+                      li У нас есть производственные мощности выполнить работу за 7 дней.
+                      li Здесь, как и везде работает условие — чем быстрее — тем дороже.
+                      li Быстро и дешево возможно только в ущерб качеству и это не к нам
+                    p.
+                      Некоммерческие проекты, например, по спасению природы, детей обсуждаются отдельно (переписать)
+                      
+        include module/our-work
+        include module/in-work
+        include module/feedback
+        
+      include pattern/footer          
+    include pattern/script

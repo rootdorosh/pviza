@@ -1,0 +1,23 @@
+.support {
+	display: none;
+	width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #e53935;
+	font-size: 12px;
+	text-align: center;
+	color: #fff;
+	line-height: 1.2;
+	padding: 2px 20px;
+
+	a {
+		color: #fff;
+		text-decoration: underline;
+
+		&:hover {
+			color: inherit;
+			text-decoration: underline;
+		}
+	}
+}

@@ -1,0 +1,71 @@
+include config/general
+include mixin/general
+
+- var title = 'Portfolio';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body
+    include module/support
+      
+    div.wrap
+      
+      include pattern/header
+      
+      include module/honeycomb-bottom
+
+      div.middle
+        
+        div.portfolio
+          div.portfolio__center.center
+            div.portfolio__container
+              h1.portfolio__heading Портфолио
+              nav.portfolio__nav
+                ul.portfolio__nav-list
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link.active(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Корпоративные сайты
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Интернет-магазины
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Промо-сайты
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Порталы
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Сервисы
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Мобильные приложения
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |CRM
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Чатботы
+                  li.portfolio__nav-item
+                    a.portfolio__nav-link(href="#")
+                      svg.portfolio__nav-icon: use(xlink:href="img/sprite.svg#honeycomb")
+                      |Брендбуки
+            div.portfolio__wrap
+              h4.portfolio__description Сайты это отражение бизнеса
+            include module/portfolio-list
+            
+        include module/feedback
+                        
+      include pattern/footer            
+    include pattern/script

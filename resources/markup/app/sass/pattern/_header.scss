@@ -1,0 +1,286 @@
+.header {
+  &__wrap {
+    display: flex;
+    height: 91px;
+    align-items: center;
+  }
+
+  &__logo {
+    width: 140px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &__main {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &__panel {
+    display: flex;
+    height: 91px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  &__menu-main {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__btn {
+    width: 13px;
+    cursor: pointer;
+    margin-left: 20px;
+		transform: scale(1);
+		transition: transform .5s ease 0s;
+
+		&:active {
+			transform: scale(0.9);
+		}
+  }
+
+  &__btn-icon {
+    display: block;
+    width: 13px;
+    height: 12px;
+    fill: #FF7350;
+  }
+
+  &__menu-basic {
+    width: 100vw;
+    height: 100vh;
+    background-color: #FF7350;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transform: translate(-100vw, -100vh);
+    transition: transform .5s ease .2s;
+  }
+
+  &.scroll {
+    border-bottom-color: #CCCACA;
+  }
+
+  &.active {
+    .header__menu-basic {
+      transform: translate(0, 0);
+      transition: transform .5s ease 0s;
+    }
+
+    .menu-basic__wrap {
+      opacity: 1;
+      transition: opacity .5s ease .5s;
+    }
+  }
+}
+
+.menu-main {
+  &__list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    margin: 0 100px 0 0;
+    padding: 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    vertical-align: middle;
+    color: #000000;
+    padding: 10px 0;
+    font-size: 17px;
+    line-height: 1;
+    text-decoration: none;
+    position: relative;
+
+    &:after {
+      display: block;
+      content: '';
+      width: 0;
+      height: 3px;
+      background-color: #FF7350;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin-left: auto;
+      margin-right: auto;
+      transition: width .5s ease 0s;
+      will-change: width;
+    }
+
+    &:hover,
+    &.active {
+      color: #000000;
+      text-decoration: none;
+
+      &:after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.logo {
+  width: 120px;
+  height: 24px;
+  position: relative;
+  z-index: 11;
+
+  &__link {
+    display: block;
+    width: inherit;
+    height: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  &__img {
+    display: block;
+    width: inherit;
+    height: inherit;
+    fill: #1A1919;
+    color: #FF7350;
+  }
+}
+
+.menu-basic {
+  height: 100%;
+
+  &__center {
+    height: 100%;
+  }
+
+  &__wrap {
+    width: 100%;
+    height: 100%;
+    padding: 40px 0;
+    position: relative;
+    opacity: 0;
+    transition: opacity .2s ease 0s;
+  }
+
+  &__close {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    position: absolute;
+    top: 40px;
+    right: 0;
+		transform: scale(1);
+		transition: transform .5s ease 0s;
+
+    &:hover {
+      .menu-basic__close-icon {
+        fill: #FFFFFF;
+      }
+    }
+
+		&:active {
+			transform: scale(0.9);
+		}
+  }
+
+  &__close-icon {
+    display: block;
+    width: 28px;
+    height: 28px;
+    fill: #000000;
+    transition: fill .5s ease 0s;
+  }
+
+  &__main {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding-top: 80px;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: right;
+    line-height: 1.4;
+  }
+
+  &__panel {
+    width: 100%;
+  }
+
+  &__nav {
+    margin-bottom: 30px;
+  }
+
+  &__nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__nav-item {
+    margin: 0 0 20px 0;
+    padding: 0;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__nav-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 36px;
+    font-weight: 900;
+    color: #000000;
+    letter-spacing: 1.29px;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+  }
+
+  &__info-title {
+    font-weight: 900;
+    font-size: 24px;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+    margin: 0 0 30px 0;
+  }
+
+  &__info-phone {
+    font-size: 24px;
+    color: #000000;
+    margin: 0 0 25px 0;
+  }
+
+  &__info-email {
+    font-size: 18px;
+    color: #000000;
+    margin: 0 0 25px 0;
+  }
+
+  &__info-link {
+    color: #000000;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      text-decoration: none;
+      color: #FFFFFF;
+    }
+  }
+}

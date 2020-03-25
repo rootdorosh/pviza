@@ -1,0 +1,283 @@
+// reset
+input,
+select,
+textarea,
+button {
+	outline: none !important;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+textarea {
+	resize: vertical;
+}
+
+::-ms-clear {
+	display: none;
+}
+
+// helper
+.fluid {
+	display: block !important;
+	width: 100% !important;
+}
+
+.message-error {
+	display: block;
+	line-height: 1.1;
+	padding: 8px 0 0 0;
+	color: #ed1c24;
+	font-size: 14px;
+	clear: both;
+}
+
+.required {
+	color: #ed1c24;
+}
+
+.input-hidden {
+	visibility: hidden;
+	position: absolute;
+	left: -999999px;
+}
+
+// inputbox
+.inputbox-default {
+	height: 48px;
+	background-color: transparent;
+	padding: 0 10px;
+	color: #000000;
+	font-size: 15px;
+	font-family: $font-family-default;
+	border: 4px solid #EFEFEF;
+	border-radius: 4px;
+	transition: border-color .5s ease 0s;
+
+	&:hover,
+	&:focus {
+		border-color: #FF7350;
+	}
+
+	&.error {
+		border-color: #ed1c24;
+	}
+
+	&[disabled="disabled"] {
+		border-color: rgba(227,227,228,.7);
+	}
+}
+
+// textarea
+.textarea-default {
+	height: 80px;
+	background-color: transparent;
+	padding: 10px;
+	color: #000000;
+	font-family: $font-family-default;
+	font-size: 15px;
+	border: 4px solid #EFEFEF;
+	border-radius: 4px;
+	transition: border-color .5s ease 0s;
+
+	&:hover,
+	&:focus {
+		border-color: #FF7350;
+	}
+
+	&.error {
+		border-color: #ed1c24;
+	}
+
+	&[disabled="disabled"] {
+		border-color: rgba(227,227,228,.7);
+	}
+}
+
+// select
+.select-default {
+	padding: 0 10px;
+	font-size: 15px;
+}
+
+// file
+.add-file {
+	&__row {
+		margin-bottom: 15px;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__item {
+		position: relative;
+		padding-right: 35px;
+		margin-bottom: 15px;
+	}
+
+	&__name {
+		font-size: 15px;
+		@extend %crop-txt;
+	}
+
+	&__remove {
+		display: block;
+		width: 24px;
+		height: 24px;
+		cursor: pointer;
+		background-color: #D8D8D8;
+		border-radius: 50%;
+		position: absolute;
+		top: -1px;
+		right: 0;
+		transition: background-color .5s ease 0s;
+
+		&:hover {
+			background-color: #FF7350;
+		}
+	}
+
+	&__remove-icon {
+		display: block;
+		width: 10px;
+		height: 10px;
+		fill: #ffffff;
+		@extend %elm-middle;
+	}
+
+	&__btn {
+		display: inline-block;
+		vertical-align: middle;
+		font-size: 15px;
+		color: #FF7350;
+		cursor: pointer;
+		transition: color .5s ease 0s;
+
+		&:hover {
+			color: #000000;
+		}
+	}
+
+	&__input {
+		opacity: 0;
+		position: absolute;
+		left: -999999px;
+		z-index: -1;
+	}
+
+	&__item.active {
+		.add-file__btn {
+			display: none;
+		}
+	}
+}
+
+// btn
+.btn {
+  display: inline-block;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: none;
+	margin: 0;
+	padding: 0;
+  white-space: nowrap;
+  text-decoration: none !important;
+  position: relative;
+  @include user-select(none);
+}
+
+.btn-extra {
+	font-size: 16px;
+	font-weight: 800;
+	text-transform: uppercase;
+	color: #FF7350;
+	padding: 5px 0;
+	transition: color .5s ease 0s;
+
+	&:hover {
+		color: #000000;
+	}
+}
+
+.btn-info {
+	background-color: #ffffff;
+	border: 1px solid #AEABAB;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #000000;
+	padding: 4px 15px;
+	transition: background-color .5s ease 0s,
+							color .5s ease 0s,
+							border-color .5s ease 0s;
+
+	&:hover {
+		color: #ffffff;
+		background-color: #FF7350;
+		border-color: #FF7350;
+	}
+}
+
+.btn-general {
+	background-color: #FF764D;
+	border: 1px solid #FF764D;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #ffffff;
+	padding: 6px 15px;
+	transition: background-color .5s ease 0s,
+							color .5s ease 0s;
+
+	&:hover {
+		color: #FF764D;
+		background-color: #ffffff;
+	}
+}
+
+.field {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	.placeholder {
+		width: 100%;
+		line-height: 1.4;
+		order: 1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 0;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		transition: color .3s ease 0s, transform .3s ease 0s;
+	}
+
+	input, textarea {
+		order: 2;
+		position: relative;
+		z-index: 1;
+	}
+
+	&.default {
+		.placeholder {
+			padding: 0 10px;
+			font-size: 15px;
+			letter-spacing: 0.54px;
+			transform: translate(4px, 14px);
+		}
+
+		input, textarea {
+			&:focus, &.active {
+				& + .placeholder {
+					transform: translate(4px, -25px);
+					color: #C2BFBF;
+					z-index: 1;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,47 @@
+include config/general
+include mixin/general
+
+- var title = 'Sunbee — Weproduction в Киеве, разработка, дизайн UI/UX и SEO-продвижение. Креативные и позитивные идеи';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body.body-start
+    include module/support
+    
+    div.welcome
+      div.welcome__list
+      div.welcome__wrap
+        div.welcome__logo
+          svg.welcome__logo-icon: use(xlink:href="img/sprite.svg#logo")
+        div.welcome__set
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+          svg.welcome__decor: use(xlink:href="img/sprite.svg#hexagon")
+      
+    div.wrap.wrap-start
+
+      div.start
+        div.start__center
+          div.start__main
+            div.start__content
+              div.start__logo
+                img.start__logo-img(src="img/logo.svg", alt="Sunbee")
+                  
+              h1.start__heading Привет!
+
+              p.
+                Наш сайт сейчас на опытной стадии. <br>
+                В ближайшее время будет запущен в сеть.
+
+              p(itemscope="", itemtype="http://schema.org/Organization").
+                Контакты для связи: <br>
+                <a href="tel:+380506041064" class="start__contact"><span itemprop="telephone">+38 050 604 10 64</span></a> <br>
+                <a href="mailto:ls@sunbee.studio" class="start__contact"><span itemprop="email">ls@sunbee.studio</span></a>
+                        
+    include pattern/script

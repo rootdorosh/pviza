@@ -1,0 +1,39 @@
+.body-scroll-hidden {
+	overflow: hidden;
+}
+
+.wrap {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	position: relative;
+}
+
+.header {
+  width: 100%;
+  background-color: #ffffff;
+	border-bottom: 1px solid transparent;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.middle {
+	padding-top: 150px;
+	flex: 1 0 auto;
+}
+
+.center {
+  max-width: 1230px;
+  margin: 0 auto;
+	padding: 0 15px;
+  @include clearfix;
+}
+
+.footer {
+	min-height: 50px;
+	flex: 0 0 auto;
+	padding: 20px 0;
+	position: relative;
+}

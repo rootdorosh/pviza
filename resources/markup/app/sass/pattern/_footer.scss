@@ -1,0 +1,280 @@
+.footer {
+  &__main {
+    min-height: 1px;
+    position: relative;
+
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      border-top: 1px solid #CCCACA;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+  }
+
+  &__main-container {
+    position: relative;
+  }
+
+  &__btn-map {
+    position: absolute;
+    top: -20px;
+    left: 0;
+  }
+
+  &__main-wrap {
+    display: flex;
+    padding: 60px 0 30px 0;
+  }
+
+  &__main-left {
+    width: 140px;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+  &__main-right {
+    flex-grow: 1;
+    flex-shrink: 1;
+  }
+
+  &__info {
+    padding-top: 20px;
+    min-height: 1px;
+    position: relative;
+
+    &:before {
+      display: block;
+      content: '';
+      width: 100%;
+      border-top: 1px solid #CCCACA;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -2;
+    }
+  }
+
+  &__info-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__info-left {
+    margin-right: 20px;
+  }
+
+  &__info-center {
+    text-align: center;
+  }
+
+  &__info-right {
+    margin-left: 30px;
+  }
+
+  &__copyright {
+    font-weight: 300;
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.6;
+  }
+
+  &__welcome {
+    font-size: 17px;
+    color: #000000;
+    letter-spacing: 0.55px;
+    line-height: 1;
+  }
+
+  &__logo-img {
+    display: block;
+    width: 80px;
+    height: 16px;
+    fill: #1A1919;
+    color: #FF7350;
+    margin-bottom: 5px;
+  }
+
+  &__logo-caption {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 1;
+    color: #000000;
+  }
+
+  &__main-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  &__main-item {
+    margin-right: 90px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__phone {
+    margin-bottom: 19px;
+  }
+
+  &__phone-link {
+    font-size: 26px;
+    line-height: 1;
+    color: #000000;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      color: #FF7350;
+      text-decoration: none;
+    }
+  }
+
+  &__messenger {
+    line-height: 1.6;
+  }
+
+  &__messenger-link {
+    font-size: 16px;
+    line-height: 1;
+    color: #000000;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      color: #FF7350;
+      text-decoration: none;
+    }
+  }
+
+  &__email {
+    margin-bottom: 21px;
+  }
+
+  &__email-link {
+    font-size: 18px;
+    line-height: 1;
+    color: #000000;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      color: #FF7350;
+      text-decoration: none;
+    }
+  }
+
+  &__social {
+    font-size: 0;
+    line-height: 1;
+  }
+
+  &__social-link {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 30px;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+
+      .footer__social-icon {
+        fill: #FF7350;
+      }
+    }
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__social-icon {
+    display: block;
+    fill: #AEABAB;
+    transition: fill .5s ease 0s;
+
+    &.icon-facebook {
+      width: 10px;
+      height: 18px;
+    }
+
+    &.icon-linkedin {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &__presentation {
+    line-height: 1.4;
+  }
+
+  &__presentation-link {
+    font-size: 18px;
+    color: #000000;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      color: #FF7350;
+      text-decoration: none;
+    }
+  }
+
+  &__order-row {
+    margin-bottom: 12px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__order-link {
+    font-size: 16px;
+    color: #000000;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover {
+      color: #FF7350;
+      text-decoration: none;
+    }
+  }
+}
+
+.menu-lang {
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+
+  &__item {
+    margin: 0 15px 0 0;
+    padding: 0;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  &__link {
+    font-size: 16px;
+    color: #AEABAB;
+    text-decoration: none;
+    transition: color .5s ease 0s;
+
+    &:hover,
+    &.active {
+      color: #000000;
+      text-decoration: none;
+    }
+  }
+}

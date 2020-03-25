@@ -1,0 +1,1 @@
+{"labels":{"title":{"creating":"Creating Period","updating":"Updating Period","index":"Periods"},"success":{"created":"Period success created","updated":"Period success updated","deleted":"Periods success deleted"},"fields":{"id":"#","is_active":"Active","rank":"Rank","title":"Title"},"description":{"is_active":"","rank":"","title":""}},"default":{"is_active":1,"rank":10}}

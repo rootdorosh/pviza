@@ -1,0 +1,62 @@
+#structure-tree .item {
+  cursor: pointer;
+}
+#structure-tree .bold {
+  font-weight: bold;
+}
+#structure-tree ul {
+  padding-left: 1em;
+  line-height: 1.5em;
+  list-style-type: dot;
+}
+
+
+/*
+	structure-treeview Styler
+*/
+
+.structure-treeview, .structure-treeview ul, .structure-treeview li{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+.structure-treeview{}
+.structure-treeview ul{
+	display:none;
+}
+.structure-treeview li{
+	margin-top:1px;
+	position:relative;
+	width:100%;
+}
+/* IE leaves a blank space where span is added so this is to avoid that */
+.structure-treeview li{
+	float:left;
+	display:inline;
+}
+
+.structure-treeview li a{padding-left:28px;}
+.structure-treeview li span{float:left;position:absolute;top:5px;left:5px;width:13px;height:13px;cursor:auto;font-size:0;}
+.structure-treeview li span, .structure-treeview li span.collapsed{background:url(./img/collapsed.gif) no-repeat 0 0;}
+.structure-treeview li span.expanded{background:url(./img/expanded.gif) no-repeat 0 0;}
+
+/* second level */
+
+.structure-treeview li li a{padding-left:56px;}
+.structure-treeview li li span{left:28px;}
+
+/* third level */
+
+.structure-treeview li li li a{padding-left:84px;}
+.structure-treeview li li li span{left:56px;}
+
+.d-block {
+  display: block;
+}
+.d-none {
+  display: none;
+}
+
+/* etc. */
+
+/*  */

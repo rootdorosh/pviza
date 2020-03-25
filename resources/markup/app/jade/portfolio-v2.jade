@@ -1,0 +1,73 @@
+include config/general
+include mixin/general
+
+- var title = 'Portfolio v2';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body
+    include module/support
+      
+    div.wrap
+      
+      include pattern/header
+      
+      include module/honeycomb-bottom
+
+      div.middle
+        
+        div.product#product(data-index="0", ref="index")
+          div.product__loader(v-if="!show")  
+          div.product__wrap(v-cloak)
+            div.product__area
+              transition(name="product-bg", mode="out-in")
+                svg.product__bg(v-if="show", v-bind:key="product.id"): use(xlink:href="img/sprite.svg#polygon")
+              transition(name="product-fill", mode="out-in")
+                svg.product__fill(v-if="show", v-bind:key="product.id"): use(xlink:href="img/sprite.svg#polygon")
+              transition(name="product-image", mode="out-in")
+                svg.product__image(v-if="countEnd", v-bind:key="product.id", version="1.1", baseProfile="full", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 777.3 738.4", preserveAspectRatio="xMidYMid meet", xml:space="preserve")
+                  defs
+                    pattern(id="image" patternUnits="userSpaceOnUse", width="960", height="960")
+                      image(v-if="imgWebp", v-bind:xlink:href="getImgUrl('image', 'webp')", x="0", y="0", width="960", height="960")
+                      image(v-else, v-bind:xlink:href="getImgUrl('image', 'any')", x="0", y="0", width="960", height="960")
+                  path(fill="url(#image)", d="M772.1,388.1L653.7,91.4c-9.6-24-31.3-41.1-56.9-44.8L280.6,0.8C255-3,229.3,7.3,213.3,27.6L15.6,278.5c-16,20.3-20,47.7-10.4,71.7l118.4,296.7c9.6,24.1,31.3,41.2,56.9,44.8l316.2,45.8c25.6,3.7,51.3-6.5,67.3-26.9l197.8-250.9C777.7,439.5,781.7,412.2,772.1,388.1z")
+              transition(name="product-details", mode="out-in", v-on:enter="countUp")
+                div.product__details(v-if="show", v-bind:key="product.id")
+                  div.product__scope
+                    div.product__main
+                      div.product__counter {{ counter }}
+                      div.product__info
+                        div.product__label Над проектом работало:
+                        div.product__caption специалистов
+            div.product__content
+              div.product__list
+                a.product__list-btn(href="#")
+                  svg.product__list-icon: use(xlink:href="img/sprite.svg#back")
+              transition(name="product-heading", mode="out-in")
+                h1.product__heading(v-if="show", v-bind:key="product.id") {{ product.title }}
+              transition(name="product-description", mode="out-in")
+                div.product__description(v-if="show", v-bind:key="product.id", v-html="product.description")
+              transition(name="product-more", mode="out-in")
+                div.product__more(v-if="show", v-bind:key="product.id")
+                  a.product__more-btn(v-bind:href="product.url") Перейти к просмотру
+                    svg.product__more-btn-icon: use(xlink:href="img/sprite.svg#view")
+              transition(name="product-barcode", mode="out-in")
+                div.product__barcode(v-if="show", v-bind:key="product.id")
+                  picture.product__barcode-img
+                    source(v-if="imgWebp", v-bind:srcset="getImgUrl('barcode', 'webp')", type="image/webp")
+                    img(v-bind:src="getImgUrl('barcode', 'any')", alt="Barcode")
+              div.product__panel
+                div.product__panel-btn(v-on:click="switchPrev")
+                  svg.product__panel-icon: use(xlink:href="img/sprite.svg#prev")
+                  div.product__panel-caption Работа №{{ prevIndex }}
+                div.product__panel-btn(v-on:click="switchNext")
+                  svg.product__panel-icon: use(xlink:href="img/sprite.svg#next")
+                  div.product__panel-caption Работа №{{ nextIndex }}
+                  
+        include module/feedback
+                        
+      include pattern/footer            
+    include pattern/script

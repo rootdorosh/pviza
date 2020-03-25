@@ -1,0 +1,113 @@
+include config/general
+include mixin/general
+
+- var title = 'Item service design';
+
+doctype html  
+// Language сodes http://www.w3schools.com/tags/ref_language_codes.asp 
+html(lang="en")
+  head
+    include pattern/head
+  body
+    include module/support
+      
+    div.wrap
+      
+      include pattern/header
+
+      include module/honeycomb-bottom
+      
+      div.middle
+        
+        div.article
+          div.article__center.center
+            h1.heading Логотипы, фирменные стили, дизайнерское сопровождение
+          div.article__bg
+            div.butterfly
+              div.butterfly__loop-1
+                div.butterfly__loop-2
+                  div.butterfly__icon
+                    include ../../dist/img/butterfly.svg
+          div.article__center.center
+            div.quote.js-animation
+              div.quote__body
+                div.quote__content Дизайн это ваш ответ конкурентам и приглашение для покупателей. Будем рады выполнить ваши задачи.
+              div.quote__foot
+                div.quote__caption Sunbee design
+                
+            div.text-block
+              //- item
+              div.text-block__item.align-center
+                div.text-block__wrap
+                  div.text-block__heading Когда промо-сайт идеальное решение?
+                  div.text-block__content
+                    p.
+                      Вы начинающий предприниматель, у вас есть идея, но вы не готовы на большие вложения 
+                    p.
+                      Ваша компания  решила выделить отдельные продукты и услуги, чтобы увеличить рынок сбыта, 
+                      улучшить показатели продаж, привлечь новую аудиторию У вас один продукт или услуга 
+                    p.
+                      Вы собираетесь провести мероприятие и ваша невероятная программа требует достойного анонса
+                    p.
+                      И другие случаи, требующие особого представления
+              //- item
+              div.text-block__item.align-center
+                img.text-block__decor.flowers-1(src="img/decor/flowers-1.svg", alt="")
+              //- item
+              div.text-block__item
+                div.text-block__wrap
+                  div.text-block__heading Виды работ
+                  div.text-block__content
+                    p.
+                      Тщательно изучим задачу, определим приоритеты и поставим сроки 
+                    p.
+                      Создадим дизайн-концепцию
+                    p.
+                      Напишем тексты, проведем фотосъемку и видеосъемку, разработаем художественные материалы, подберем лучшие фотографии
+                    p.
+                      Проведем сборку программного продукта, оттестируем, наполним подготовленным заранее контентом
+                    p.
+                      Мы не забыли, весь процесс будет у вас как на ладони, благодаря Workflow и  нашей системе ведения проектов
+                    p.
+                      Мы точно знаем, как расскрыть именно Ваш потенциал
+              //- item
+              div.text-block__item
+                div.text-block__wrap
+                  div.text-block__heading Виды работ
+                  div.text-block__content
+                    p.
+                      Тщательно изучим задачу, определим приоритеты и поставим сроки 
+                    p.
+                      Создадим дизайн-концепцию
+                    p.
+                      Напишем тексты, проведем фотосъемку и видеосъемку, разработаем художественные материалы, подберем лучшие фотографии
+                    p.
+                      Проведем сборку программного продукта, оттестируем, наполним подготовленным заранее контентом
+                    p.
+                      Мы не забыли, весь процесс будет у вас как на ладони, благодаря Workflow и  нашей системе ведения проектов
+                    p.
+                      Мы точно знаем, как расскрыть именно Ваш потенциал
+              //- item
+              div.text-block__item.align-center
+                img.text-block__decor.flowers-2(src="img/decor/flowers-2.svg", alt="")
+              //- item
+              div.text-block__item.align-center.list
+                div.text-block__wrap
+                  div.text-block__heading Стоимость и сроки
+                  div.text-block__content
+                    ul.list-basic
+                      li Любая работа зависит от объема и сложности выполнения.
+                      li Стоимость разработки промо-сайта  от $3000
+                      li У нас есть производственные мощности выполнить работу за 7 дней.
+                      li Здесь, как и везде работает условие — чем быстрее — тем дороже.
+                      li Быстро и дешево возможно только в ущерб качеству и это не к нам
+                    p.
+                      Некоммерческие проекты, например, по спасению природы, детей обсуждаются отдельно (переписать)
+
+                      
+        include module/our-work
+        include module/in-work
+        include module/feedback
+                            
+      include pattern/footer          
+    include pattern/script

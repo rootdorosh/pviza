@@ -1,0 +1,62 @@
+[
+	{
+		"id": 1,
+		"title": "Золотой Век",
+		"description": "<p>Корпоративный сайт для кондитерской компании подного цикла производства.<p><p>Целевая аудитория: 40+</p>",
+		"url": "#",
+		"counter": 18,
+		"image": [{
+			"webp": "img/product/01.webp?v=1",
+			"any": "img/product/01.jpg?v=1"
+		}],
+		"barcode": [{
+			"webp": "img/tmp/01.webp",
+			"any": "img/tmp/01.jpg"
+		}]
+	},
+	{
+		"id": 2,
+		"title": "Flora",
+		"description": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.<p><p>Целевая аудитория: 30+</p>",
+		"url": "#",
+		"counter": 8,
+		"image": [{
+			"webp": "img/product/01.webp",
+			"any": "img/product/01.jpg"
+		}],
+		"barcode": [{
+			"webp": "img/tmp/01.webp",
+			"any": "img/tmp/01.jpg"
+		}]
+	},
+	{
+		"id": 3,
+		"title": "Delicia",
+		"description": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.<p><p>Целевая аудитория: 25+</p>",
+		"url": "#",
+		"counter": 4,
+		"image": [{
+			"webp": "img/product/01.webp",
+			"any": "img/product/01.jpg"
+		}],
+		"barcode": [{
+			"webp": "img/tmp/01.webp",
+			"any": "img/tmp/01.jpg"
+		}]
+	},
+	{
+		"id": 4,
+		"title": "Escapehour",
+		"description": "<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.<p><p>Целевая аудитория: 20+</p>",
+		"url": "#",
+		"counter": 7,
+		"image": [{
+			"webp": "img/product/01.webp",
+			"any": "img/product/01.jpg"
+		}],
+		"barcode": [{
+			"webp": "img/tmp/01.webp",
+			"any": "img/tmp/01.jpg"
+		}]
+	}
+]

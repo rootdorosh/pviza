@@ -1,0 +1,170 @@
+.slick-slider {
+  position: relative;
+  display: block;
+  box-sizing: border-box;
+  -webkit-touch-callout: none;
+  user-select: none;
+  touch-action: pan-y;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+  position: relative;
+  overflow: hidden;
+  display: block;
+  margin: 0;
+  padding: 0;
+
+  &:focus {
+    outline: none !important;
+  }
+
+  &.dragging {
+    cursor: pointer;
+    cursor: hand;
+  }
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  display: block;
+  position: relative;
+  left: 0;
+  top: 0;
+
+  &:before,
+  &:after {
+    content: '';
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+  min-height: 1px;
+
+  [dir="rtl"] & {
+    float: right;
+  }
+
+  img {
+    display: block;
+  }
+
+  &.slick-loading img {
+    display: none;
+  }
+
+  &.dragging img {
+    pointer-events: none;
+  }
+
+  .slick-initialized & {
+    display: block;
+  }
+
+  .slick-loading & {
+    visibility: hidden;
+  }
+
+  .slick-vertical & {
+    display: block;
+    height: auto;
+    border: 1px solid transparent;
+  }
+}
+
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+.slick-disabled {
+  display: none !important;
+}
+
+.slick-arrow {
+  display: block;
+  width: 52px;
+  height: 40px;
+  overflow: hidden;
+  text-indent: -9999px;
+  border: none;
+  background-color: rgba(166,26,50,1);
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  transition: background-color .5s ease 0s;
+
+  &:hover {
+    background-color: rgba(166,26,50,.8);
+  }
+
+  &.slick-prev {
+    left: 0;
+  }
+
+  &.slick-prev:before {
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 12px 12px 0;
+    border-color: transparent #ffffff transparent transparent;
+    position: absolute;
+    top: 8px;
+    right: 22px;
+  }
+
+  &.slick-next {
+    left: 52px;
+  }
+
+  &.slick-next:before {
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 12px 0 12px 12px;
+    border-color: transparent transparent transparent #ffffff;
+    position: absolute;
+    top: 8px;
+    left: 22px;
+  }
+}
+
+.slider-arrows-right {
+  .slick-prev {
+    left: auto;
+    right: 52px;
+  }
+
+  .slick-next {
+    left: auto;
+    right: 0;
+  }
+}
+
+// about
+.slider-about {
+  @include clearfix;
+
+  > .about__affirmation-item ~ .about__affirmation-item {
+   position: absolute;
+   left: -99999px;
+  }
+}

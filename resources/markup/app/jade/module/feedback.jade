@@ -1,0 +1,51 @@
+div.feedback
+  div.feedback__center.center
+    div.feedback__inner
+      include ../../../dist/img/sunbee.svg
+      div.feedback__wrap
+        div.feedback__container
+          div.feedback__caption
+            p Мы постоянно обновляем портфолио, исключая старые работы. Сейчас странно смотрятся сайты 2000-го года :) или даже 2013 года. 
+            p Но наши знания не убывают, а только увеличиваются. 
+            p Поэтому мы Вас выслушаем с радостью и поможем реализовать самые смелые идеи Ваши или наши :).
+          div.feedback__panel
+            div.feedback__title Запросить просчет
+            div.feedback__scope
+              div.feedback__main
+                form.feedback__form(action="#")
+                  div.feedback__row
+                    div.field.default
+                      input.inputbox-default.fluid.js-feedback-field(type="text", name="", value="")
+                      div.placeholder Ваше имя и фамилия
+                  div.feedback__row
+                    div.field.default
+                      input.inputbox-default.fluid.js-feedback-field(type="text", name="", value="")
+                      div.placeholder Пожалуйста, укажите e-mail
+                  div.feedback__row
+                    div.field.default
+                      textarea.textarea-default.fluid.js-feedback-field(name="")
+                      div.placeholder Опишите детально ваш проект
+                  div.feedback__row
+                    div.field.default
+                      input.inputbox-default.fluid.js-mask-phone.js-feedback-field(type="text", name="", value="")
+                      div.placeholder Телефон
+                  div.feedback__row
+                    div.feedback__add-file
+                      div.add-file(data-max-size="5")
+                        div.add-file__list
+                          div.add-file__item
+                            label.add-file__btn + Добавить файл
+                              input.add-file__input.js-add-file(type="file", name="", accept=".doc, .docx, .xls, .xlsx, .pdf, .ppt, .keynote")
+                  div.feedback__row
+                    div.feedback__info.
+                      Пожалуйста, не более 5-ти файлов :)<br>
+                      Принимаем форматы такие форматы как doc,docx, xls, xlsx, pdf, ppt, keynote
+                  div.feedback__btn
+                    button.btn.btn-extra(type="submit") Отправить
+              div.feedback__extra
+                div.feedback__caption
+                  p или перейти к формировании базовой стоимости, что займет некоторое время
+                div.feedback__title
+                  a.feedback__title-link(href="#")
+                    svg.feedback__title-icon: use(xlink:href="img/sprite.svg#pointer")
+                    |Онлайн-просчет

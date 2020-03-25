@@ -1,0 +1,1 @@
+{!! $widget->view('templates.' . $template, compact('block')) !!}

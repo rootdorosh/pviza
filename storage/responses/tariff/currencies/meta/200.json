@@ -1,0 +1,1 @@
+{"labels":{"title":{"creating":"Creating Currency","updating":"Updating Currency","index":"Currencies"},"success":{"created":"Currency success created","updated":"Currency success updated","deleted":"Currencies success deleted"},"fields":{"id":"#","is_active":"Active","code":"Code","title":"Title"},"description":{"is_active":"","code":"","title":""}},"default":{"is_active":1}}

@@ -1,0 +1,60 @@
+.start {
+	&__center	{
+		max-width: 730px;
+		padding: 0 15px;
+		margin-left: auto;
+		margin-right: auto;
+		@include clearfix;
+	}
+
+	&__main {
+		display: flex;
+		width: 100%;
+		min-height: 100vh;
+		padding: 15px 0;
+		align-items: center;
+	}
+
+	&__logo {
+		margin-bottom: 130px;
+	}
+
+	&__logo-img {
+		display: block;
+		width: 220px;
+		height: 44px;
+	}
+
+	&__content {
+		color: #180A0A;
+		font-size: 18px;
+		line-height: 1.6;
+		@include clearfix;
+	}
+
+	&__heading {
+		font-weight: normal;
+
+		@include media($min, $viewport-post-md) {
+			font-size: 32px;
+		}
+
+		@include media($max, $viewport-md) {
+			font-size: 25px;
+		}
+	}
+
+	&__contact {
+		display: inline-block;
+		vertical-align: middle;
+
+		@include media($min, $viewport-post-md) {
+			font-size: 28px;
+			line-height: 1.4;
+		}
+
+		@include media($max, $viewport-md) {
+			font-size: 24px;
+		}
+	}
+}
