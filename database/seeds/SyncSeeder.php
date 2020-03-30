@@ -20,7 +20,7 @@ class SyncSeeder extends Seeder
        $this->call(PermissionsTableSeeder::class);
        $this->call(ConnectRelationshipsSeeder::class);
        $this->call(EventsTableSeeder::class);
-       $this->call(StructureSeeder::class);
+       //$this->call(StructureSeeder::class);
        $this->call(TranslationSeeder::class);
     }
 }
