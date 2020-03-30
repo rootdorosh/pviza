@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 
 composer install
-php artisan app_version:update
-php artisan view:clear 
-php artisan config:clear
-php artisan cache:clear 
-php artisan scms:clear
-php artisan config:cache
-php artisan migrate
-php artisan db:seed --class=SyncSeeder 
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate app_version:update
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate view:clear 
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate config:clear
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate cache:clear 
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate scms:clear
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate config:cache
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate migrate
+/usr/local/php72/bin/php -c /home/parfymer/.system/php/poland.shengen-viza.com.ua.ini -f artisan migrate db:seed --class=SyncSeeder 
