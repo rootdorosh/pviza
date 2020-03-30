@@ -148,7 +148,6 @@ class FormRequest extends BaseFormRequest
             $rules[$locale.'.description'] = [
                 'nullable',
                 'string',
-                'max: 10240',
             ];
             $rules[$locale.'.seo_h1'] = [
                 'nullable',

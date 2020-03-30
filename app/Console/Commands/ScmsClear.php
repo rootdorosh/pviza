@@ -43,6 +43,7 @@ class ScmsClear extends Command
     public function handle()
     {
         Cache::tags(ScmsHelper::TAG)->flush();
+        Cache::tags(ScmsHelper::getTag())->flush();
         $this->output->writeln('<info>scms cache cleared</info>');
     }
 }

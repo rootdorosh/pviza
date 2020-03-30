@@ -595,7 +595,7 @@ class StructureService
     public function aliasesUrlParser(string $url): ?array
     {
         $results = null;
-        
+       
         foreach (ScmsHelper::getFrontRoutes() as $rule) {
 
             //если находим правило для преобразования - то инициализируем переменные и определяем путь к странице
@@ -765,30 +765,20 @@ class StructureService
             $breadcrumbs = [];
 
             foreach ($pages as $page) {
-                
-                if ($previousIdLenth == strlen($page->structure_id)) {
-
-                    $depth = $depth > 0 ? $depth - 1 : 0;
-                } else if (strlen($page->structure_id) < $previousIdLenth) {
-
-                    for ($a = 0, $b = ($previousIdLenth - strlen($page->structure_id)) / 6; $a <= $b; $a ++) {
-                        unset($uri[$depth --]);
-                    }
+                $paths = [];
+                $sglob_id = '';
+                foreach (str_split($page->structure_id, 6) as $spart_id) {
+                   $sglob_id .=  $spart_id;
+                   $p = self::getPageByStructureId($sglob_id);
+                   $paths[] = $p->alias;
                 }
-
-                //запоминаем ширину структурного айди страницы
-                $previousIdLenth = strlen($page->structure_id);
-
-                $uri[$depth ++] = $page->alias;
-                $uriId[$page['alias']] = $page->structure_id;
-
-                $urlsMap[implode(self::PATH_DELIMITER, $uri)] = [
+                
+                $urlsMap[implode(self::PATH_DELIMITER, $paths)] = [
                     'id' => $page['id'],
                     'structure_id' => $page['structure_id'],
                 ];
             }
         }
-
         return $urlsMap;
     }
     
