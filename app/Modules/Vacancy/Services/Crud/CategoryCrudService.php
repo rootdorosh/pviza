@@ -92,7 +92,7 @@ class CategoryCrudService
      */
     public function attatchMedia(array $data, Category $category = null): array
     {     
-        $data = $this->imageService->attachImage($category, 'image', $data);
+        $data = $this->imageService->attachImage('image', $data, $category);
         
         return $data;
     }

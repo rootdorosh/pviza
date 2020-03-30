@@ -35,7 +35,8 @@ class VacancyCrudService
      */
     public function store(array $data): Vacancy
     { 
-        $data = $this->attatchMedia($data);          $vacancy = Vacancy::create($data);
+        $data = $this->attatchMedia($data);          
+        $vacancy = Vacancy::create($data);
         $this->syncRelations($vacancy, $data);
                 
         return $vacancy;
@@ -81,7 +82,7 @@ class VacancyCrudService
      */
     public function attatchMedia(array $data, Vacancy $vacancy = null): array
     {     
-        $data = $this->imageService->attachImage($vacancy, 'image', $data);
+        $data = $this->imageService->attachImage('image', $data, $vacancy);
         
         return $data;
     }

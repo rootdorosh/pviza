@@ -225,14 +225,13 @@ class ImageService implements ImageManagerInterface
     }
 
     /**
-     * @param Model $model
+     * @param Model|null $model
      * @param string $attribute
      * @param array $data
      * @return mixed
      */
-    public function attachImage(Model $model, string $attribute, array $data): array
+    public function attachImage(string $attribute, array $data, Model $model = null): array
     {
-        info($data);
         // image data must be array type
         if (!empty($data[$attribute]) && !is_array($data[$attribute])) {
             unset($data[$attribute]);
@@ -244,7 +243,6 @@ class ImageService implements ImageManagerInterface
         $doRemoveImage = null;
 
         if (!empty($data[$attribute]) && is_array($data[$attribute])) {
-            $oldImage = $model->$attribute ?? null;
             $data[$attribute] = $this->saveFromBase64($data[$attribute]['content'], [
                 'name' => $data[$attribute]['name'],
                 'oldImage' => $oldImage,

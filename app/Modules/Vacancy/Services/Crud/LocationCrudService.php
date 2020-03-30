@@ -92,7 +92,7 @@ class LocationCrudService
      */
     public function attatchMedia(array $data, Location $location = null): array
     {     
-        $data = $this->imageService->attachImage($location, 'image', $data);
+        $data = $this->imageService->attachImage('image', $data, $location);
         
         return $data;
     }

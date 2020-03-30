@@ -92,7 +92,7 @@ class TypeCrudService
      */
     public function attatchMedia(array $data, Type $type = null): array
     {     
-        $data = $this->imageService->attachImage($type, 'image', $data);
+        $data = $this->imageService->attachImage('image', $data, $type);
         
         return $data;
     }

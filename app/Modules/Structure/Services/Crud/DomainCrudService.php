@@ -58,7 +58,7 @@ class DomainCrudService
     public function attatchMedia(array $data): array
     {
         if (!empty($data['logo_base64'])) {
-            $data['logo'] = $this->imageService->saveFromBase64($data['logo_base64'], [
+            $data['logo'] = $this->imageService->saveFromBaimageServicese64($data['logo_base64'], [
                 'name' => $data['logo_name'],
             ]);
         }
