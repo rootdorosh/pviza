@@ -80,8 +80,8 @@
                         <div class="row row-50 justify-content-lg-between">
                             <div class="col-lg-5">
                             {!! (new App\Modules\ContentBlock\Front\Widget('index', [
-                                'menu_id' => conf('menu_footer_id'),
-                                'template' => 'footer',
+                                'block_id' => conf('cb_contact_footer'),
+                                'template' => 'empty',
                             ]))->run() !!}
                             </div>
 
