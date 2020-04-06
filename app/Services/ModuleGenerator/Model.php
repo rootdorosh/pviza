@@ -23,6 +23,7 @@ class Model extends Base
             'namespace' => $this->getNamespace(),
             'relations' => $this->getRelations(),
             'relationsTypes' => $this->getRelationsTypes(),
+            'mutators' => $this->getMutators(),
         ]; 
        
         $this->gs->putFile($this->getPath(), 
@@ -98,5 +99,33 @@ class Model extends Base
         }
         
         return $relations;
-    }    
+    }   
+    
+    public function getMutators(): string
+    {
+        $s = '';
+        
+        foreach ($this->model['fields'] as $key => $field) {
+            if (!empty($field['mutator']['set'])) {
+                $s .= "\n\t" . '/**' . "\n";
+                $s .= "\t" . '* Set attribute '.$key.'.' . "\n";
+                $s .= "\t" . '*/' . "\n";
+                
+                $s .= "\t" . 'public function set'.Str::studly($key).'Attribute($value)' . "\n";
+                $s .= "\t" . '{' . "\n";
+            
+                if ($field['mutator']['set'] === 'fromDatetimeToInt') {
+                    $s .= "\t\t" . 'if (!is_int($value)) {' . "\n";
+                    $s .= "\t\t\t" . '$this->attributes[\''.$key.'\'] = strtotime($value);' . "\n";
+                }
+                
+                $s .= "\t\t" . '}' . "\n";
+                $s .= "\t" . '}' . "\n";    
+            }
+        }
+        
+        return $s;
+    }
+    
+    
 }

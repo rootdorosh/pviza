@@ -1,14 +1,52 @@
 <?php
 
-if (! function_exists('d_l')) {
-    /*
-     * @param string $url
-     * @return string
-     */
-    function d_l(string $url): string {
-        return $url;
-    }
+function d_l($path)
+{
+	$locale = app()->getLocale();
+	
+    return sprintf('/%s/%s/', $locale, trim($path, '/'));
 }
+
+
+function switchUrl(string $url, string $lang = null)
+{
+    //по-умолчанию возвращаем текущий урл
+    $result = $url;
+
+    if (!$lang) // по умолчанию используем текущий язык сайта
+        $lang = app()->getLocale();
+
+    if (!empty($url) && !empty($lang)) {
+
+        //разбиваем урл на составные части
+        $uriParts = explode('/', trim($url, '/'));
+        if (is_array($uriParts) && count($uriParts)) {
+
+            //берем первый элемент урла и проверяем его на наличие языкового параметра
+            $firstItem = $uriParts[0];
+            if (in_array($firstItem, config('translatable.locales'))) {
+                //если он действительно языковый параметр - уничтожаем его
+                unset($uriParts[0]);
+            }
+        }
+
+        //если указанный язык не входит в список допустимых, то используем текущий язык
+        if (!in_array($lang, config('translatable.locales'))) {
+            $lang = app()->getLocale();
+        }
+
+        //формируем ссылку с новым языковым параметром
+        $buildUrl = implode('/', $uriParts);
+        $result = sprintf('/%s/%s', $lang, $buildUrl);
+        if (!empty($buildUrl) && strpos($result, '?') === false) { // если нет get'а, добавляем слеш в конец ссылки
+            $result .= '/';
+        }
+    }
+
+
+    return $result;
+}
+
 
 if (! function_exists('l')) {
     /*

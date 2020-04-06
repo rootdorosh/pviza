@@ -121,6 +121,10 @@ class FormRequest extends BaseRequest
             $rules .= "{$tab4}'{$ruleReq}',\n";
             
             $ruleType = $item['type'] !== 'image' ? $item['type'] : 'string';
+            if ($ruleType === 'datetime') {
+                $ruleType = 'date_format:Y-m-d\TH:i:s.0000';
+            }
+            
             if ($item['uiType'] === 'AdaptiveImage') {
                 $ruleType = 'array';
             }

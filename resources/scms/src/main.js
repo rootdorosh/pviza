@@ -34,6 +34,9 @@ import Toasted from 'vue-toasted';
 import { TreeViewPlugin } from "@syncfusion/ej2-vue-navigations";
 import MavonEditor from 'mavon-editor';
 import Editor from '@/components/Editor/Editor';
+import { Datetime } from 'vue-datetime'
+// You need a specific loader for CSS files
+import 'vue-datetime/dist/vue-datetime.css'
 
 // не видаляти, або поясни чому видалив?
 export const bus = new Vue();
@@ -41,6 +44,7 @@ export const bus = new Vue();
 Vue.config.productionTip = false;
 Vue.prototype.$user = {};
 
+//Vue.use(Datetime)
 Vue.component('MainContent', MainContent);
 Vue.component('RenderableCheckbox', RenderableCheckbox);
 Vue.component('RenderableImage', RenderableImage);
@@ -48,6 +52,7 @@ Vue.component('RenderableArraySecondary', RenderableArraySecondary);
 Vue.component('RenderableCommon', RenderableCommon);
 Vue.component('RenderableColor', RenderableColor);
 Vue.component('Editor', Editor);
+Vue.component('Datetime', Datetime);
 
 Vue.mixin(ImgHelper);
 Vue.mixin(ArrayHelper);

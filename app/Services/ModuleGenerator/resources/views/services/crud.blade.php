@@ -122,7 +122,7 @@ $this->syncRelations(${{ Str::camel($model['name']) }}, $data);
             );
         }
 @endforeach @foreach ($model['imagesAttributes'] as $attr)    
-        $data = $this->imageService->attachImage(${{ Str::camel($model['name']) }}, '{{ $attr }}', $data);
+        $data = $this->imageService->attachImage('{{ $attr }}', $data, ${{ Str::camel($model['name']) }});
 @endforeach        
         return $data;
     }

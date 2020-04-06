@@ -70,5 +70,7 @@ class {{ $model['name'] }} extends Model
         return $this->{{ Str::camel($item['type']) }}('{{ $item['model'] }}');
     @endif
 <?= "\n\t"?>}
-@endforeach    
+@endforeach
+<?= $mutators?>
+
 }

@@ -1,10 +1,16 @@
- <nav class="header__menu-main menu-main">
-  <ul class="menu-main__list">
-    @foreach ($items as $item)  
-    <li class="menu-main__item">
-        <a href="{{ $item['link'] }}" class="menu-main__link {{ $item['active'] ? 'active' : '' }}">{{ $item['title'] }}</a>
+<ul class="rd-navbar-nav">
+    @foreach ($items as $item)
+    <li class="rd-nav-item">
+        <a class="rd-nav-link" href="{{ $item['link'] }}">{{ $item['title'] }}</a>
+        @if (!empty($item['children']))
+        <ul class="rd-menu rd-navbar-dropdown">
+            @foreach ($item['children'] as $child)
+            <li class="rd-dropdown-item">
+                <a class="rd-dropdown-link" href="{{ $child['link'] }}">{{ $child['title'] }}</a>
+            </li>
+            @endforeach
+        </ul>
+        @endif
     </li>
-    @endforeach 
-  </ul>
-</nav>    
-    
+    @endforeach    
+</ul>        

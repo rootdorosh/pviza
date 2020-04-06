@@ -23,6 +23,13 @@ class StructureSeeder extends Seeder
      */
     public function run()
     {
+        foreach ([
+            'contact_footer'
+        ] as $name) {
+            $this->makeContentBlock($name);
+        }
+        
+        
         $structureService = new StructureService;
         Domain::where('alias', config('app.domain'));
         
@@ -37,10 +44,9 @@ class StructureSeeder extends Seeder
         );
         
         // index
-        $indexPage = $structureService->makeDomainRootPage($domain, [
-            'body_class' => 'body-start',
-        ]);
+        $indexPage = $structureService->makeDomainRootPage($domain);
         
+        /*
         $this->attachContentBlock($indexPage, 'content1', 'promo');
         $this->attachBlock($indexPage, 'content2', [
             'widget_id' => 'Advantage',
@@ -54,12 +60,7 @@ class StructureSeeder extends Seeder
             'template' => 'bulleted_list',
             'category_id' => $this->getModel('App\Modules\Advantage\Models\Category')->id,
         ]);
-        $this->attachBlock($indexPage, 'content6', [
-            'widget_id' => 'Advantage',
-            'action' => 'index',
-            'template' => 'with_tabs',
-            'category_id' => $this->getModel('App\Modules\Advantage\Models\Category')->id,
-        ]);
+        */
         
         //contact
         $contactPage = $structureService->makePage(

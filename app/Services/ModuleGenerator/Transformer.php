@@ -83,6 +83,8 @@ class Transformer extends Base
            
             if (!empty($item['uiType']) && $item['uiType'] === 'image') {
                 $body = 'return $this->primitive($'. Str::camel($this->model['name']) .'->getThumb(\'' . $attr . '\', 100, 75, \'resize\'));';
+            } elseif ($item['type'] === 'datetime') {
+                $body = 'return $this->primitive(date(\'Y-m-d\TH:i:s.0000\', $'.Str::camel($this->model['name']).'->'.$attr.'));';
             } elseif (!empty($item['uiType']) && $item['uiType'] === 'AdaptiveImage') {
                 $body = '$data = (array) $'. Str::camel($this->model['name']) .'->'. $attr .';';
                 $body.= "\n\t\t\t".'return $this->primitive(array_dot($data));';                

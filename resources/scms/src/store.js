@@ -11,6 +11,10 @@ import advantageAdvantageIndex from '@/modules/advantage/store/advantage/index';
 import advantageAdvantageForm from '@/modules/advantage/store/advantage/form';
 import login from '@/modules/auth/store/login';
 import remindPassword from '@/modules/auth/store/remind.password';
+import blogCategoryIndex from '@/modules/blog/store/category/index';
+import blogCategoryForm from '@/modules/blog/store/category/form';
+import blogBlogIndex from '@/modules/blog/store/blog/index';
+import blogBlogForm from '@/modules/blog/store/blog/form';
 import contentBlockContentBlockIndex from '@/modules/contentBlock/store/contentBlock/index';
 import contentBlockContentBlockForm from '@/modules/contentBlock/store/contentBlock/form';
 import eventEventIndex from '@/modules/event/store/event/index';
@@ -50,6 +54,10 @@ export default new Vuex.Store({
     advantageAdvantageForm,
     login,
     remindPassword,
+    blogCategoryIndex,
+    blogCategoryForm,
+    blogBlogIndex,
+    blogBlogForm,
     contentBlockContentBlockIndex,
     contentBlockContentBlockForm,
     eventEventIndex,

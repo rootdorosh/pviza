@@ -80,9 +80,13 @@ class SettingsService
                             'type' => 'text',
                             'value' => Setting::get('social_facebook'),
                         ],
-                        'social_linkedin' => [
+                        'social_twitter' => [
                             'type' => 'text',
-                            'value' => Setting::get('social_linkedin'),
+                            'value' => Setting::get('social_twitter'),
+                        ],
+                        'social_instagram' => [
+                            'type' => 'text',
+                            'value' => Setting::get('social_instagram'),
                         ],
                     ],
                 ],
@@ -114,10 +118,10 @@ class SettingsService
                 'cb' => [
                     'title' => $texts['tabs']['cb'],
                     'fields' => [
-                        'cb_contact_header' => [
+                        'cb_contact_footer' => [
                             'type' => 'select',
                             'options' => ExtArrHelper::valueTextFromList($this->contentBlockFetchService->getList()),
-                            'value' => Setting::get('cb_contact_header'),
+                            'value' => Setting::get('cb_contact_footer'),
                         ],
                     ],
                 ],

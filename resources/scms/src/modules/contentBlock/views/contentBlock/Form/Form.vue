@@ -111,27 +111,6 @@
 
         </b-tab>
 
-        <b-tab :title="meta.fields.adaptive_image">
-          <adaptive-images
-            model-name="content-block"
-            attribute-name="adaptive_image"
-            v-model="model.adaptive_image"
-            :sizes="meta.adaptive_images.adaptive_image"
-          />
-        </b-tab>
-
-        <b-tab :title="meta.title.photos"
-                v-if="model.id"
-        >
-          <list-grid
-            id="content-block-photos"
-            :url="'content-block/content-blocks/' + model.id + '/photos'"
-            description-attr="description"
-            image-attr="image"
-            inactive-attr="is_active"
-            permission="contentblock.contentblock.photo"
-          />
-        </b-tab>
       </b-tabs>
 
       <form-footer

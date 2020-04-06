@@ -8,6 +8,7 @@ import Error from '@/modules/error/routes';
 import AuthModule from '@/modules/auth/routes';
 
 import AdvantageModule from '@/modules/advantage/routes';
+import BlogModule from '@/modules/blog/routes';
 import ContentBlockModule from '@/modules/contentBlock/routes';
 import EventModule from '@/modules/event/routes';
 import MenuModule from '@/modules/menu/routes';
@@ -39,6 +40,7 @@ const baseRoutes = [
     },
     children: [].concat(
       AdvantageModule,
+      BlogModule,
       ContentBlockModule,
       EventModule,
       MenuModule,

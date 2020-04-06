@@ -52,13 +52,13 @@ class FormRequest extends BaseFormRequest
                 'nullable',
                 'string',
             ],
-            'social_linkedin' => [
+            'social_instagram' => [
                 'nullable',
                 'string',
             ],
-            'cb_contact_header' => [
+            'social_twitter' => [
                 'nullable',
-                'exists:content_blocks,id',
+                'string',
             ],
             'cb_contact_footer' => [
                 'nullable',

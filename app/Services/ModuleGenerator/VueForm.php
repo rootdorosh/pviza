@@ -108,6 +108,14 @@ class VueForm extends Base
                 $html.= self::TAB14 .       'v-model="model.' . $attr . '"' . self::ENTER;
                 $html.= self::TAB12 .     '/>' . self::ENTER;
                 
+            } elseif ($item['type'] === 'datetime') {
+                $html.= self::TAB12 .     '<datetime' . self::ENTER;
+                $html.= self::TAB14 .       'type="datetime"' . self::ENTER;
+                $html.= self::TAB14 .       'format="yyyy-MM-dd HH:mm"' . self::ENTER;
+                $html.= self::TAB14 .       'id="' . $attr . '"' . self::ENTER;
+                $html.= self::TAB14 .       'v-model="model.' . $attr . '"' . self::ENTER;
+                $html.= self::TAB12 .     '/>' . self::ENTER;
+                
             } elseif ($item['type'] === 'color') {
                 $html.= self::TAB12 .     '<b-form-input' . self::ENTER;
                 $html.= self::TAB14 .       'type="text"' . self::ENTER;
