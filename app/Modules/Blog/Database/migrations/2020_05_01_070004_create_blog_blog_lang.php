@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlogCategoryLang extends Migration
+class CreateBlogBlogLang extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,19 @@ class CreateBlogCategoryLang extends Migration
      */
     public function up()
     {
-        Schema::create('blog_categories_lang', function (Blueprint $table) {
+        Schema::create('blog_lang', function (Blueprint $table) {
 			$table->increments('translation_id');
-			$table->integer('category_id')->unsigned();
+			$table->integer('blog_id')->unsigned();
 			$table->char('locale', 2)->index();
 			$table->string('title')->nullable();
 			$table->string('alias')->nullable();
-			$table->string('description')->nullable();
+			$table->longText('description')->nullable();
 			$table->string('seo_h1')->nullable();
 			$table->string('seo_title')->nullable();
 			$table->string('seo_description')->nullable();        
           
-            $table->unique(['category_id', 'locale']);
-            $table->foreign('category_id')->references('id')->on('blog_categories')->onDelete('cascade');        
+            $table->unique(['blog_id', 'locale']);
+            $table->foreign('blog_id')->references('id')->on('blog')->onDelete('cascade');        
             
         });
     }
@@ -37,6 +37,6 @@ class CreateBlogCategoryLang extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blog_categories_lang');
+        Schema::dropIfExists('blog_lang');
     }
 }

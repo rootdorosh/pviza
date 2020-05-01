@@ -29,7 +29,6 @@ class StructureSeeder extends Seeder
             $this->makeContentBlock($name);
         }
         
-        
         $structureService = new StructureService;
         Domain::where('alias', config('app.domain'));
         
@@ -42,31 +41,29 @@ class StructureSeeder extends Seeder
             ['alias' => config('app.domain')], 
             ExtArrHelper::keyToItems($domainData->toArray(), 'translations', 'locale')
         );
-        
-        // index
+        //index
         $indexPage = $structureService->makeDomainRootPage($domain);
         
-        /*
-        $this->attachContentBlock($indexPage, 'content1', 'promo');
-        $this->attachBlock($indexPage, 'content2', [
-            'widget_id' => 'Advantage',
-            'action' => 'index',
-            'template' => 'with_icons',
-            'category_id' => $this->getModel('App\Modules\Advantage\Models\Category')->id,
+        //$this->attachContentBlock($indexPage, 'content1', 'promo');
+        
+        $this->attachBlock($indexPage, 'content1', [
+            'widget_id' => 'Vacancy',
+            'action' => 'homeSearchForm',
         ]);
+        /*
         $this->attachBlock($indexPage, 'content3', [
             'widget_id' => 'Advantage',
             'action' => 'index',
             'template' => 'bulleted_list',
             'category_id' => $this->getModel('App\Modules\Advantage\Models\Category')->id,
         ]);
-        */
         
         //contact
         $contactPage = $structureService->makePage(
             $indexPage, 
             ExtArrHelper::keyToItems(factory(Page::class)->make(['alias' => 'contact'])->toArray(), 'translations', 'locale')
-        );        
+        );   
+        */
     }
 	
     /*

@@ -143,3 +143,7 @@ function rmDirRecursive($path) {
 	rmdir($path);
 	return;
 }
+
+function datetime_to_ui($time) {
+  	return date('Y-m-d', $time) . 'T' . date('H:i:s', $time) . '.000Z';
+}

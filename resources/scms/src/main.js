@@ -29,6 +29,7 @@ import RenderableImage from './components/Index/Renderable/Image';
 import RenderableArraySecondary from './components/Index/Renderable/ArraySecondary';
 import RenderableCommon from './components/Index/Renderable/Common';
 import RenderableColor from './components/Index/Renderable/Color';
+import RenderableDatetime from './components/Index/Renderable/Datetime';
 import vSelect from 'vue-select';
 import Toasted from 'vue-toasted';
 import { TreeViewPlugin } from "@syncfusion/ej2-vue-navigations";
@@ -51,6 +52,7 @@ Vue.component('RenderableImage', RenderableImage);
 Vue.component('RenderableArraySecondary', RenderableArraySecondary);
 Vue.component('RenderableCommon', RenderableCommon);
 Vue.component('RenderableColor', RenderableColor);
+Vue.component('RenderableDatetime', RenderableDatetime);
 Vue.component('Editor', Editor);
 Vue.component('Datetime', Datetime);
 

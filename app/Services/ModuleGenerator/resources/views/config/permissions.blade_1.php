@@ -1,0 +1,1 @@
+<?= "\n\nreturn "?><?= $content?>;

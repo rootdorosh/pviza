@@ -8,6 +8,5 @@ return [
         'icon' => '',
         'route' => 'blog/blogs',
         'permission' => 'blog.blog',
-		
     ],
 ];

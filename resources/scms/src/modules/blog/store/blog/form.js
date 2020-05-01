@@ -13,9 +13,7 @@ const getDefaultState = () => {
     is_active: '',
     is_home: '',
     image: '',
-    image_name: '',
     image_header: '',
-    image_header_name: '',
     created_at: '',
   }
 
@@ -29,11 +27,10 @@ const getDefaultState = () => {
     seo_description: '',      
     }
   }
-
   return {
     ...state,
     url: '/blog/blogs',
-    model,
+    model, 
   }
 }
 // initial state
@@ -72,7 +69,7 @@ export default {
       })
 
       let model = {}
-
+      
       if (state.model.id) {
         for (let key in state.model) {
           let value = response.form.data.data[key]
@@ -86,9 +83,7 @@ export default {
         }
       }
 
-      commit('setState', {
-        model
-      })
+      commit('setState', {model})
     },
     onSubmit({ state, dispatch }, options) {      
       let method = state.model.id ? 'PUT' : 'POST'       

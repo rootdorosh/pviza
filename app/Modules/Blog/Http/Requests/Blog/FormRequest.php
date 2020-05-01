@@ -85,7 +85,6 @@ class FormRequest extends BaseFormRequest
             ],
             'created_at' => [
                 'required',
-                'date_format:Y-m-d\TH:i:s.0000',
             ],
         ];
 

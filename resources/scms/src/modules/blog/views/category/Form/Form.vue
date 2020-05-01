@@ -1,5 +1,7 @@
 <template v-if="meta.isLoaded">
   <div>
+      
+      
     <form @submit.prevent="onSubmit('save')">
       <b-tabs content-class="mt-3">
         <b-tab :title="$t('tab.main')" :title-link-class="hasErrorsInTabMain() ? 'error':''" active>
@@ -161,6 +163,7 @@ export default {
   computed: {
     ...mapState('blogCategoryForm', {
       meta: state => state.meta,
+    
       model: state => state.model,
       isFetching: state => state.isFetching,
       errors: state => state.errorMessage,  

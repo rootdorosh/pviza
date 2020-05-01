@@ -102,14 +102,11 @@ return [
             'vue' => [
                 'index' => false,
             ],
-        ],        
+        ], 
         'created_at' => [
             'label' => 'Дата створення',
             'required' => true,
             'type' => 'datetime',
-            'mutator' => [
-                'set' => 'fromDatetimeToInt',
-            ],
             'rules' => [
             ],
             'migration' => [
@@ -119,7 +116,11 @@ return [
             'vue' => [
                 'index' => true,
             ],
-        ]        
+            'mutator' => [
+                'set' => 'fromDatetimeToInt',
+            ],   
+            'filter' => true,
+        ],
     ],
     'translatable' => [
         'owner_id' => 'blog_id',

@@ -78,8 +78,9 @@ class Blog extends Model
 	public function setCreatedAtAttribute($value)
 	{
 		if (!is_int($value)) {
-			$this->attributes['created_at'] = strtotime($value);
+			$value = strtotime($value);
 		}
+		$this->attributes['created_at'] = $value;
 	}
 
 }

@@ -1,5 +1,7 @@
 <template v-if="meta.isLoaded">
   <div>
+      
+      
     <form @submit.prevent="onSubmit('save')">
       <b-tabs content-class="mt-3">
         <b-tab :title="$t('tab.main')" :title-link-class="hasErrorsInTabMain() ? 'error':''" active>
@@ -85,10 +87,12 @@
            :description="meta.description.created_at"
            :label-cols="2"
          > 
-           <b-form-input
-             type="text"
+           <datetime
+             type="datetime"
+             format="yyyy-MM-dd HH:mm:ss"
              id="created_at"
              v-model="model.created_at"
+             :auto="true"
            />
            <span class="text-danger" v-if="errors.created_at">{{ errors.created_at[0] }}</span>
          </b-form-group>
@@ -205,6 +209,7 @@ export default {
   computed: {
     ...mapState('blogBlogForm', {
       meta: state => state.meta,
+    
       model: state => state.model,
       isFetching: state => state.isFetching,
       errors: state => state.errorMessage,  

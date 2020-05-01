@@ -15,18 +15,12 @@ class TranslationSeeder extends Seeder
     public function run()
     {
         $items = [
-            'order' => 'Order',
-            'order_cloud_server' => 'Order Cloud Server',
-            'message' => 'Message',
-            'message_sent' => 'Message sent',
-            'mobile' => 'Mobile',
-            'name' => 'Name',
-            'email' => 'E-mail',
-            'your_email' => 'Your e-mail',
-            'tariff_required' => 'Please choose a tariff',
-            'form_order_success_sent' => 'You order success sent',
-            'tariffs' => 'Tariffs',
-            'tariff' => 'Tariff',
+            'privacy-policy' => 'Privacy policy',
+            'work-in-poland' => 'Робота в Польщі',
+            'searching' => 'Шукати',
+            'кeywords' => 'Коючові слова',
+            'city' => 'Місто',
+            '' => '',
         ];
         
         foreach ($items as $slug => $value) {

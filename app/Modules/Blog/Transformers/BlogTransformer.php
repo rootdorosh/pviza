@@ -19,8 +19,8 @@ class BlogTransformer extends AbstractTransformer
      * @var  array
      */
     protected $defaultIncludes = [
-        'category_id',
-		'category_title',
+        'category_title',
+		'category_id',
 		'is_active',
 		'is_home',
 		'image',
@@ -101,7 +101,7 @@ class BlogTransformer extends AbstractTransformer
      */
     public function includeCategoryTitle(Blog $blog)
     {
-        return $this->primitive($blog->category_title);
+        return $this->primitive($blog->category->title);
     }
     
     /**
@@ -151,7 +151,12 @@ class BlogTransformer extends AbstractTransformer
      */
     public function includeCreatedAt(Blog $blog)
     {
-        return $this->primitive(date('Y-m-d\TH:i:s.0000', $blog->created_at));
+        return $this->primitive(
+			$blog->created_at
+				? datetime_to_ui($blog->created_at)
+				: null
+		);
+
     }
     
     /**

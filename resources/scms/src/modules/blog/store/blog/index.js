@@ -23,7 +23,8 @@ const columns = {
     sortable: false,
   },
   created_at: {
-    filterable: true,
+    renderable: 'datetime',
+    filterable: false,
   },
   title: {
     filterable: true,

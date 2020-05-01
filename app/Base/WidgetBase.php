@@ -5,6 +5,7 @@ namespace App\Base;
 //use Arrilot\Widgets\AbstractWidget;
 use Illuminate\Support\Str;
 use App\Modules\Structure\Http\Requests\Block\InsertRequest;
+use App\Modules\Structure\Services\StructureService;
 use FrontPage;
 
 //abstract class WidgetBase extends AbstractWidget
@@ -49,8 +50,18 @@ abstract class WidgetBase
      */
     public function getIsAllowAjax(): bool
     {
-        return strtolower(request()->header('WIDGET-ID')) === strtolower($this->getModule()) &&
-               strtolower(request()->header('WIDGET-ACTION')) === strtolower($this->action);
+        $widgetID = request()->header('WIDGET-ID');
+        $actionID = request()->header('ACTION-ID');
+        
+        if (!$widgetID && isset($_GET['WIDGET-ID'])) {
+            $widgetID = $_GET['WIDGET-ID'];
+        }
+        if (!$actionID && isset($_GET['ACTION-ID'])) {
+            $actionID = $_GET['ACTION-ID'];
+        }
+        
+        return strtolower($widgetID) === strtolower($this->getModule()) &&
+               strtolower($actionID) === strtolower($this->action);
     }
     
     
@@ -197,9 +208,18 @@ abstract class WidgetBase
     {
         $view = str_replace('.', '/', $view);
         $file = $this->getViewPath() . $view . '.blade.php';
+        if (!is_file($file)) {
+            $file = $this->getViewPath() . $view . '.php';
+        }
         
         $data['widget'] = new static;
         
         return view()->file($file, $data)->render();
+    }
+   
+    public function render404()
+    {
+        echo (new StructureService)->renderPage('404');
+        die();
     }
 }

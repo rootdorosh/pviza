@@ -1,7 +1,6 @@
 <?php 
 
 ?>
-
 <!DOCTYPE html>
 <html class="wide wow-animation" lang="{{ l() }}">
     <head>
@@ -97,14 +96,15 @@
                     <div class="container">
                         <div class="footer-modern-aside-inner">
                             <div class="footer-modern-aside-item">
-                                <p class="rights"><span>Робота в Польщі</span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><a href="privacy-policy.html">Privacy Policy</a></p>
+                                <p class="rights"><span><?= t('work-in-poland')?></span><span>&nbsp;&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><a href="<?= d_l('privacy-policy')?>"><?= t('privacy-policy')?></a></p>
                             </div>
                             <div class="footer-modern-aside-item">
                                 <ul class="list-inline list-inline-sm">
-                                    <li><a class="icon icon-xs fa fa-facebook" href="#"></a></li>
-                                    <li><a class="icon icon-xs fa fa-twitter" href="#"></a></li>
-                                    <li><a class="icon icon-xs fa fa-google-plus" href="#"></a></li>
-                                    <li><a class="icon icon-xs fa fa-pinterest-p" href="#"></a></li>
+                                    @foreach (['facebook', 'twitter', 'instagram'] as $social)
+                                      @if (!empty(conf('social_' . $social)))
+                                      <li><a target="_blank" class="icon icon-xs fa fa-{{ $social }}" href="{{ conf('social_' . $social) }}"></a></li>
+                                      @endif
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
@@ -112,23 +112,7 @@
                 </div>
             </footer>
         </div>
-        <!-- PANEL-->
-        <div class="layout-panel-wrap" id="layout-panel-wrap">
-            <div class="layout-panel">
-                <button class="layout-panel-toggle" data-custom-toggle="#layout-panel-wrap"><span></span></button>
-                <div class="layout-panel-content"> 
-                    <p class="layout-panel-title">Choose Color Scheme</p>
-                    <div class="theme-switcher-group">
-                        <button class="theme-switcher-group-item" data-theme-name="default"><span></span>Default</button>
-                        <button class="theme-switcher-group-item" data-theme-name="style-1"><span></span>Style 1</button>
-                        <button class="theme-switcher-group-item" data-theme-name="style-2"><span></span>Style 2</button>
-                        <button class="theme-switcher-group-item" data-theme-name="style-3"><span></span>Style 3</button>
-                        <button class="theme-switcher-group-item" data-theme-name="style-4"><span></span>Style 4</button>
-                        <button class="theme-switcher-group-item" data-theme-name="style-5"><span></span>Style 5</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <div class="snackbars" id="form-output-global"></div>
         <script src="/markup/js/core.min.js"></script>
         <script src="/markup/js/script.js"></script>

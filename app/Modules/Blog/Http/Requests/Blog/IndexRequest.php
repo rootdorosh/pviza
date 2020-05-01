@@ -21,6 +21,7 @@ use App\Modules\Blog\Models\Blog;
  * @bodyParam  category_title    string  optional  Категорія 
  * @bodyParam  is_active    integer  optional  Активність 
  * @bodyParam  is_home    integer  optional  На головну 
+ * @bodyParam  created_at    datetime  optional  Дата створення 
  * @bodyParam  title    string  optional  Заголовок 
  * @bodyParam  alias    string  optional  Alias
  */
@@ -49,6 +50,7 @@ use App\Modules\Blog\Models\Blog;
 					'category_title',
 					'is_active',
 					'is_home',
+					'created_at',
 					'title',
 					'alias'
                 ]),
@@ -156,6 +158,10 @@ use App\Modules\Blog\Models\Blog;
 
         if ($this->is_home !== null) {
             $query->where("blog.is_home", "like", "%{$this->is_home}%");
+        }
+
+        if ($this->created_at !== null) {
+            $query->where("blog.created_at", "like", "%{$this->created_at}%");
         }
 
         if ($this->title !== null) {
