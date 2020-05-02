@@ -42,7 +42,7 @@
                                     <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                                     <!-- RD Navbar Brand-->
 
-                                    <div class="rd-navbar-brand"><a class="brand" href="_main.html"><img class="brand-logo-dark" src="/markup/images//logo-default-176x33.png" alt="" srcset="/markup/images//logo-default-352x67.png 2x"/><img class="brand-logo-light" src="/markup/images//logo-inverse-176x33.png" alt="" srcset="/markup/images//logo-inverse-352x67.png 2x"/></a>
+                                    <div class="rd-navbar-brand"><a class="brand" href="{{ d_l('/') }}"><img class="brand-logo-dark" src="/markup/images//logo-default-176x33.png" alt="" srcset="/markup/images//logo-default-352x67.png 2x"/><img class="brand-logo-light" src="/markup/images//logo-inverse-176x33.png" alt="" srcset="/markup/images//logo-inverse-352x67.png 2x"/></a>
                                     </div>
                                 </div>
                                 <div class="rd-navbar-main-element">
@@ -55,9 +55,10 @@
                                 </div>
                                 <div class="rd-navbar-aside">
                                     <div class="rd-navbar-aside-item">
+                                        <?php $langLinksMap = FrontPage::getLangLinksMap();?>
                                         @foreach (FrontPage::getDomain()->site_langs as $lang)
                                         <li style="display:inline;">  
-                                            <a href="{{ switchUrl(request()->path(), $lang) }}">
+                                            <a href="{{ isset($langLinksMap[$lang]) ? $langLinksMap[$lang] : switchUrl(request()->path(), $lang) }}">
                                                 <img src="/markup/images/{{ $lang }}.png" alt="{{ $lang }}" style="padding-left:5px;float:right;max-width:35px;max-height:25px;">
                                             </a>
                                         </li>
@@ -116,5 +117,6 @@
         <div class="snackbars" id="form-output-global"></div>
         <script src="/markup/js/core.min.js"></script>
         <script src="/markup/js/script.js"></script>
+        <script src="/markup/js/dev.js"></script>
     </body>
 </html>

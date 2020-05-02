@@ -1,10 +1,12 @@
 <?php
 
-function d_l($path)
+function d_l($path, $lang = null)
 {
-	$locale = app()->getLocale();
-	
-    return sprintf('/%s/%s/', $locale, trim($path, '/'));
+	$locale = $lang ? $lang : app()->getLocale();
+	$url = sprintf('/%s/%s/', $locale, trim($path, '/'));
+    $url = str_replace('//', '/', $url);
+    
+    return $url;
 }
 
 

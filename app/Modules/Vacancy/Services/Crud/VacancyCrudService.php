@@ -4,6 +4,7 @@ declare( strict_types = 1 );
 
 namespace App\Modules\Vacancy\Services\Crud;
 
+use Illuminate\Support\Str;
 use App\Modules\Vacancy\Models\Vacancy;
 use App\Services\Image\ImageService;
 
@@ -35,6 +36,13 @@ class VacancyCrudService
      */
     public function store(array $data): Vacancy
     { 
+        foreach (config('translatable.locales') as $locale) {
+            if (empty($data[$locale]['alias'])) {
+                $data[$locale]['alias'] = $data[$locale]['title'];
+            }
+            $data[$locale]['alias'] = Str::slug($data[$locale]['alias']);
+        }
+        
         $data = $this->attatchMedia($data);          
         $vacancy = Vacancy::create($data);
         $this->syncRelations($vacancy, $data);
@@ -50,8 +58,15 @@ class VacancyCrudService
      */
     public function update(Vacancy $vacancy, array $data): Vacancy
     { 
+        foreach (config('translatable.locales') as $locale) {
+            if (empty($data[$locale]['alias'])) {
+                $data[$locale]['alias'] = $data[$locale]['title'];
+            }
+            $data[$locale]['alias'] = Str::slug($data[$locale]['alias']);
+        }
+
         $data = $this->attatchMedia($data, $vacancy);
-         $vacancy->update($data);
+        $vacancy->update($data);
         $this->syncRelations($vacancy, $data);
                 
         return $vacancy;

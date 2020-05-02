@@ -7,7 +7,7 @@ return [
     ],
     'templates' => [
         'empty' 		=> 'Only content',
-        'title_content' => 'Title + Content',        
+        'background_image_title' => 'Background-image + Title',        
     ],
     'attributes' => [
         'template' => 'Template',

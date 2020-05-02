@@ -152,8 +152,18 @@ class StructureService
      */
     public function makePage(Page $parentPage, array $attributes): Page
     {
+        if (empty($attributes['template_id'])) {
+            $attributes['template_id'] = self::TEMPLATES[0]['id'];
+        }
         if ($page = $this->getChildByAlias($parentPage, $attributes['alias'])) {
             return $page;
+        }
+        foreach ((new Page)->translatedAttributes as $attr) {
+            if (!empty($attributes[$attr])) {
+                foreach (config('translatable.locales') as $locale) {
+                    $attributes[$locale][$attr] = $attributes[$attr];
+                } 
+            }
         }
         
         $attributes['structure_id'] = self::buildNewPageStructureId($parentPage->id);
@@ -595,7 +605,6 @@ class StructureService
     public function aliasesUrlParser(string $url): ?array
     {
         $results = null;
-       
         foreach (ScmsHelper::getFrontRoutes() as $rule) {
 
             //если находим правило для преобразования - то инициализируем переменные и определяем путь к странице

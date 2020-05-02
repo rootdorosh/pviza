@@ -99,7 +99,7 @@ class Widget extends WidgetBase
     public static function getTemplates(): array
     {
         $templates = [];
-        foreach (['empty', 'title_content'] as $template) {
+        foreach (['empty', 'background_image_title', 'footer_seo_text'] as $template) {
             $templates[$template] = __('contentBlock::widget.templates.' . $template);
         }
         

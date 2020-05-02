@@ -19,7 +19,7 @@ $factory->define(ContentBlock::class, function (Faker $faker) {
    $fakerService = resolve('\App\Services\Faker\FakerService');
 
    $data = [
-       'image' => $fakerService->imgPath(),
+       'image' => $fakerService->imgPath(null, 'cb'),
        'name' => $faker->text(120),
        'is_active' => rand(0,1),
        'is_hide_editor' => rand(0,1),

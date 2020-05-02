@@ -127,7 +127,9 @@ class ScmsHelper
                 $file = app_path() . '/Modules/' . $module . '/Front/routes.php';
 
                 if (is_file($file)) {
-                    $routes = $routes + require $file;
+                    foreach (require $file as $item) {
+                        $routes[] = $item;
+                    }
                 }
             }
 

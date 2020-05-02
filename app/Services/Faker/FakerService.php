@@ -41,9 +41,9 @@ class FakerService
      * @param string|null $name
      * @return string
      */
-    public function imgPath($name = null) : string
+    public function imgPath($name = null, $dir = null) : string
     {
-        $binary = $this->getRandomImageContent();
+        $binary = $this->getRandomImageContent($dir);
         if ($name === null) {
             $name = $this->faker->word();
         }
@@ -60,11 +60,11 @@ class FakerService
     /**
      * @return string
      */
-    public function getRandomImageContent() : string
+    public function getRandomImageContent(string $dir = null) : string
     {
         return file_get_contents(
             Arr::random(
-                glob($this->getImgPath() . '/*')
+                glob($this->getImgPath($dir) . '/*')
             )
         );
     }
@@ -81,9 +81,13 @@ class FakerService
     /**
      * @return string
      */
-    public function getImgPath() : string
+    public function getImgPath(string $dir = null) : string
     {
-        return $this->getPath() . '/img';
+        $path = $this->getPath() . '/img';
+        if ($dir) {
+            $path .= '/' . $dir;
+        }
+        return $path;
     }
     
     /**

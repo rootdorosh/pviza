@@ -47,6 +47,11 @@ class FrontPage
     private $breadcrumbsParams = [];
     
     /*
+     * @var array
+     */
+    private $langLinksMap = [];
+    
+    /*
      * @return self
      */
     public function getInstance(): self
@@ -70,6 +75,24 @@ class FrontPage
     public function getDomain(): ?Domain
     {
         return $this->domain;
+    }
+    
+    /*
+     * @param array $data
+     * @return self
+     */
+    public function setLangLinksMap(array $data): self
+    {
+        $this->langLinksMap = $data;        
+        return $this;
+    }
+    
+    /*
+     * @return array
+     */
+    public function getLangLinksMap(): array
+    {
+        return $this->langLinksMap;
     }
     
     /*
@@ -150,7 +173,17 @@ class FrontPage
      */
     public function getH1(): ?string
     {
-        return !empty($this->h1) ? $this->h1 : $this->page->seo_h1;
+        return !empty($this->h1) ? $this->h1 : $this->getTitle();
+    }
+
+    /*
+     * @param string $value
+     * @return self
+     */
+    public function setH1(string $value): self
+    {
+        $this->h1 = $value;
+        return $this;
     }
 
     /*
@@ -173,9 +206,9 @@ class FrontPage
      * @param string $name
      * @return mixed
      */
-    public function getVar(string $name)
+    public function getVar(string $name, $default = null)
     {
-        return isset($this->vars[$name]) ? $this->vars[$name] : null;
+        return isset($this->vars[$name]) ? $this->vars[$name] :  $default;
     }
     
     /*
