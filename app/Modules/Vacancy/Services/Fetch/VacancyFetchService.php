@@ -171,7 +171,7 @@ class VacancyFetchService extends FetchService
                 }
                 
                 if (!empty($filter['category_id'])) {
-                    $wheres[] = 'vs_category.category_id = ' . (int) $filter['category_id'];
+                    $wheres[] = 'vs_cat.category_id = ' . (int) $filter['category_id'];
                 }
                 
                 $data = DB::select("
