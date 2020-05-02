@@ -38,6 +38,10 @@ class Pager
 			$countPage++;
 		}    
 		
+        if (isset($_GET['t'])) {
+            dd($countPage);
+        }
+        
 		$html = '';
 
 		$activePage = $this->getPage();		
