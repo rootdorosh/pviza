@@ -101,6 +101,7 @@ class Widget extends WidgetBase
         
         $count = $this->vacancyFetchService->getCountItems([
             'q' => request()->input('q'),
+            'location_id' => $location->id,
         ]);
         
         return $this->view('location', compact('location', 'items', 'count', 'limit'));
@@ -130,6 +131,7 @@ class Widget extends WidgetBase
         
         $count = $this->vacancyFetchService->getCountItems([
             'q' => request()->input('q'),
+            'category_id' => $category->id,
         ]);
         
         return $this->view('category', compact('category', 'items', 'count', 'limit'));
@@ -159,6 +161,7 @@ class Widget extends WidgetBase
         
         $count = $this->vacancyFetchService->getCountItems([
             'q' => request()->input('q'),
+            'type_id' => $type->id,
         ]);
         
         return $this->view('type', compact('type', 'items', 'count', 'limit'));
