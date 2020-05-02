@@ -39,6 +39,8 @@ class Pager
 		}    
 		
         if (isset($_GET['t'])) {
+            dump($this->count);
+            dump($this->limit);
             dd($countPage);
         }
         
