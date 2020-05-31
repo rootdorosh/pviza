@@ -15,19 +15,15 @@ class EventsTableSeeder extends Seeder
      */
     public function run()
     {
-        /*
-         * Add Event Items
-         *
-         */
         foreach (EventService::getEvents() as $eventItem) {
             $attrs = [
                 'event_id' => $eventItem['event_id'],
             ];
-          
-            $item = Event::where('event_id', '=', $eventItem['event_id'])->first();
+
+            $item = Event::where('event_id', $eventItem['event_id'])->first();
             if ($item === null) {
                 $item = new Event;
-                
+
                 $attrs['is_active'] = 1;
                 $attrs['content_type'] = Event::CONTENT_TYPE_TEXT_PLAIN;
                 foreach (config('translatable.locales') as $locale) {
@@ -36,12 +32,11 @@ class EventsTableSeeder extends Seeder
                         'body' => EventService::normalizeVars($eventItem['vars']),
                     ];
                 }
-                
-                $item->fill($attrs);
-                $item->save();
-            
-                echo "Add event: " . $eventItem['event_id'] . "\n";
+
+                $item = Event::create($attrs);
+
+                echo "Add event: " . $item->event_id . "\n";
             }
-        }       
+        }
     }
 }

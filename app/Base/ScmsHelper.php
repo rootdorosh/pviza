@@ -21,7 +21,7 @@ class ScmsHelper
     {
         return config('app.name') .  self::TAG;
     }
-    
+
     /**
      * Get modules
      *
@@ -40,11 +40,11 @@ class ScmsHelper
                     $modules[] = $module;
                 }
             }
-            
+
             return $modules;
-        });          
+        });
     }
-    
+
     /**
      * Get widgets
      *
@@ -64,9 +64,9 @@ class ScmsHelper
             }
 
             return $widgets;
-        //});    
+        //});
     }
-    
+
     /*
      * @param string $module
      * @return array
@@ -82,7 +82,7 @@ class ScmsHelper
             'config' => $widgetObject->getConfig(),
         ];
     }
-    
+
     /*
      * @param string $id
      * @return string
@@ -91,18 +91,18 @@ class ScmsHelper
     {
         return $widgetNamespace = "\App\Modules\\$id\Front\Widget";
     }
-    
+
     /*
-     * @param string $widgetId 
-     * @return WidgetBase 
+     * @param string $widgetId
+     * @return WidgetBase
      */
     public static function getWidgetInstance(string $widgetId): WidgetBase
     {
         $namespace = self::getWidgetNamespace($widgetId);
         return new $namespace;
     }
-    
-    
+
+
     /**
      * Get widgets
      *
@@ -112,7 +112,7 @@ class ScmsHelper
     {
         return Arr::pluck(self::getWidgets(), 'id');
     }
-    
+
     /**
      * Get widgets
      *
@@ -133,11 +133,12 @@ class ScmsHelper
                 }
             }
 
+            usort ($routes, "sortArrayRankAsc");
+
             return $routes;
-        });    
+        });
     }
-    
-    
+
      /**
      * Get side menu
      *
@@ -155,10 +156,10 @@ class ScmsHelper
                     $items = array_merge($items, require $file);
                 }
             }
-            
+
             return $items;
-        });     
-        
+        });
+
         $arrDot = array_dot($items);
         $arrDot = array_map(function($value){
              return substr_count($value, '::') ? __($value) : $value;
@@ -166,6 +167,6 @@ class ScmsHelper
 
         return array_to_tree_by_keys($arrDot);
     }
-   
-    
+
+
 }

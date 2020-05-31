@@ -47,6 +47,16 @@ class Translation extends Model
      */
     public $fillable = [
         'slug', 
+        'params', 
     ];  
     
+    /**
+     * The attributes that are mass assignable.
+     
+     * @var  array
+     */
+    public $casts = [
+        'slug' => 'string', 
+        'params' => 'array', 
+    ];  
 }

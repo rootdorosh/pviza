@@ -22,6 +22,8 @@ import eventEventForm from '@/modules/event/store/event/form';
 import eventQueueIndex from '@/modules/event/store/queue/index';
 import menus from '@/modules/menu/store/menu/index';
 import menuForm from '@/modules/menu/store/menu/form';
+import resumeResumeIndex from '@/modules/resume/store/resume/index';
+import resumeResumeView from '@/modules/resume/store/resume/view';
 import settingsSettingsForm from '@/modules/settings/store/settings/form';
 import structurePages from '@/modules/structure/store/page/index';
 import structureDomainIndex from '@/modules/structure/store/domain/index';
@@ -65,6 +67,8 @@ export default new Vuex.Store({
     eventQueueIndex,
     menus,
     menuForm,
+    resumeResumeIndex,
+    resumeResumeView,
     settingsSettingsForm,
     structurePages,
     structureDomainIndex,

@@ -69,16 +69,16 @@ class StructureService
     {
         $data = [];
         foreach (self::TEMPLATES as $templateId => $templateData) {
-            $data[$templateId] = sprintf('%s: %s[%s]', 
-                $templateData['title'], 
-                $templateData['alias'], 
+            $data[$templateId] = sprintf('%s: %s[%s]',
+                $templateData['title'],
+                $templateData['alias'],
                 $templateData['layout']
             );
         }
-        
+
         return $data;
     }
-    
+
     public static function getTemplateTitle($template_id)
     {
         $list = self::getTemplatesList();
@@ -89,7 +89,7 @@ class StructureService
             return false;
         }
     }
-    
+
     /*
      * @param Domain $domain
      * @return Page|null
@@ -100,7 +100,7 @@ class StructureService
                     ->whereRaw('LENGTH(`structure_id`) = ' . self::ID_PART_LEN)
                     ->first();
     }
-    
+
     /*
      * @param array $params
      * @param Domain $domain
@@ -111,9 +111,9 @@ class StructureService
         if ($rootPage = $this->getDomainRootPage($domain)) {
             return $rootPage;
         }
-        
+
         $title = 'Главная - ' . $domain->alias;
-        
+
         $attributes = [
             'structure_id' => self::buildNewPageStructureId(), //строим "следующий" не занятый структурный айди
             'template_id' => 1,
@@ -123,14 +123,14 @@ class StructureService
         foreach ($params as $key => $value) {
             $attributes[$key] = $value;
         }
-        
+
         foreach (config('translatable.locales') as $locale) {
             $attributes[$locale]['seo_title'] = $title;
         }
-        
+
         return Page::create($attributes);
     }
-    
+
     /*
      * @param Page $page
      * @param string $alias
@@ -142,9 +142,9 @@ class StructureService
                     ->where('alias', $alias)
                     ->whereRaw('LENGTH(structure_id) = ' . (strlen($page->structure_id) + self::ID_PART_LEN))
                     ->whereRaw('structure_id LIKE "' . $page->structure_id . '%"')
-                    ->first();        
+                    ->first();
     }
-    
+
     /*
      * @param Page $parentPage
      * @param array $attributes
@@ -162,16 +162,16 @@ class StructureService
             if (!empty($attributes[$attr])) {
                 foreach (config('translatable.locales') as $locale) {
                     $attributes[$locale][$attr] = $attributes[$attr];
-                } 
+                }
             }
         }
-        
+
         $attributes['structure_id'] = self::buildNewPageStructureId($parentPage->id);
         $attributes['domain_id'] = $parentPage->domain_id;
-        
-        return Page::create($attributes);        
+
+        return Page::create($attributes);
     }
-    
+
     /*
      * @param Page $page
      * @return void
@@ -185,7 +185,7 @@ class StructureService
             $item->delete();
         }
     }
-    
+
     /*
      * @param Page $page
      * @return Page
@@ -193,34 +193,34 @@ class StructureService
     public function copyPage(Page $page): Page
     {
         $parent = self::getPageByStructureId(substr($page->structure_id, 0, 0 - self::ID_PART_LEN));
-        
+
         $attributes = array_filter($page->toArray(), function($key) {
             return !in_array($key, ['id', 'translations']);
-        }, ARRAY_FILTER_USE_KEY);        
-        
+        }, ARRAY_FILTER_USE_KEY);
+
         $attributes['structure_id'] = self::buildNewPageStructureId($parent->id);
         $attributes['alias'] =  self::buildNewPageAlias($parent->structure_id, $page->alias . '-1');
-        
+
         foreach ($page->translations as $translation) {
             foreach ($page->translatedAttributes as $attr) {
                 $attributes[$translation->locale][$attr] = $translation->$attr;
             }
         }
-        
+
         $newPage = Page::create($attributes);
-        
+
         foreach ($page->blocks as $block) {
             $attrs = array_filter($block->toArray(), function($key) {
                 return !in_array($key, ['id']);
-            }, ARRAY_FILTER_USE_KEY);        
-            
+            }, ARRAY_FILTER_USE_KEY);
+
             $newPage->blocks()->save(new Block($attrs));
         }
-        
+
         return $newPage;
-        
+
     }
-    
+
     /*
      * @param string $structureId
      * @param string $alias
@@ -243,7 +243,7 @@ class StructureService
 
         return $alias;
     }
-    
+
     /*
      * @param Page $page
      * @param int $parentId
@@ -255,7 +255,7 @@ class StructureService
 
         $page->structure_id = self::buildNewPageStructureId($page->parent_id);
         $page->save();
-        
+
         //Archive::add(); //TODO
 
         //изменяем structure_id у всех дочерних страниц
@@ -264,13 +264,13 @@ class StructureService
             $child->structure_id = preg_replace('~^(?<!' . $structureId . ')(' . $structureId . ')~', $page->structure_id, $child->structure_id);
             $child->save();
         }
-        
+
         return $page;
     }
-    
+
     /**
      * Формируем structure_id под новую страницу, в записимости от parentId
-     * 
+     *
      * @param integer $parentId -- порядковый номер страницы-родителя
      * @return string $structureId -- структурный порядковый номер
      */
@@ -286,8 +286,8 @@ class StructureService
             if (!empty($parentPage)) {
 
                 //берем максимальную айдишку вложенной страницы
-                $where = 'SUBSTRING(`structure_id`, 1, ' . strlen($parentPage->structure_id) . ') = ' . 
-                    $parentPage->structure_id . ' AND LENGTH(`structure_id`) = ' . 
+                $where = 'SUBSTRING(`structure_id`, 1, ' . strlen($parentPage->structure_id) . ') = ' .
+                    $parentPage->structure_id . ' AND LENGTH(`structure_id`) = ' .
                     strlen($parentPage->structure_id) . '+' . self::ID_PART_LEN;
             }
         } else {
@@ -295,10 +295,10 @@ class StructureService
         }
 
         $id = null;
-        
+
         //пытаемся получить страницу по указанным критериям
         $page = Page::select(['structure_id'])->whereRaw($where)->orderBy('structure_id', 'DESC')->first();
-        
+
         if (!empty($page)) {
             //если есть страница, то работаем с её структурным айди
             $id = $page->structure_id;
@@ -311,15 +311,15 @@ class StructureService
                 $id = '000000';
             }
         }
-        
+
         $c = (int) ltrim(substr($id, strlen($id) - self::ID_PART_LEN, self::ID_PART_LEN), 0);
-        
+
         //обрабатываем и приплюсовываем 1
         $structureId = sprintf("%s%06d", substr($id, 0, strlen($id) - self::ID_PART_LEN), ($c + 1));
 
         return $structureId;
     }
-    
+
     /**
      * @param Domain $domain
      * @param string $attrKey
@@ -327,7 +327,7 @@ class StructureService
      */
     public static function getDomainTree(Domain $domain, string $attrKey = 'alias'): array
     {
-		return self::toTree($domain->pages, $attrKey); 
+		return self::toTree($domain->pages, $attrKey);
 		/*
         return [
 			'name' => $domain->alias,
@@ -335,7 +335,7 @@ class StructureService
 		];
 		*/
     }
-    
+
 
     /**
      * Приводим данные о страницах сайта из плоского списка в дерево,
@@ -377,7 +377,7 @@ class StructureService
      * @param array $tree - ветка
      * @param string $id - айдишка обрабатываемого элемента
      * @param array $data - данные обрабатываемого элемента
-     * @return array - возвращаем обработанную ветку 
+     * @return array - возвращаем обработанную ветку
      */
     private static function _findBranch($tree = [], $structureId, $data = [])
     {
@@ -398,7 +398,7 @@ class StructureService
 
             $tree[$f]['children'] = self::_findBranch($embeddedPages, substr($structureId, self::ID_PART_LEN), $data);
         }
-        
+
         return $tree;
     }
 
@@ -428,7 +428,7 @@ class StructureService
         }
         return $tree;
     }
-    
+
     /*
      * @param string string $structureId
      * @return Page
@@ -439,7 +439,7 @@ class StructureService
             return $item->structure_id !== $structureId;
         })->first();
     }
-    
+
     /*
      * @param string int $id
      * @return Page
@@ -450,8 +450,8 @@ class StructureService
             return $item->id !== $id;
         })->first();
     }
-    
-    
+
+
     /**
      * Рекурсивно приводим дерево пейджей к удобоваримому виду для класса CTreeView
      * @param array $treePages
@@ -496,7 +496,7 @@ class StructureService
 
         return $pages;
     }
-        
+
     /**
      * Строим домены
      * @return array
@@ -530,17 +530,17 @@ class StructureService
 
         return $data;
     }
-    
+
     /*
      * @return Domain|null
      */
     public static function resolveDomain(): ?Domain
     {
         $host = request()->getHttpHost();
-        
+
         return (new DomainFetchService)->byAlias($host);
     }
-    
+
     /**
      * Определяем язык
      * @param Domain $domain
@@ -552,7 +552,7 @@ class StructureService
         //разбиваем урл на элеметы
         $uriParts = explode('/', trim($url, '/'));
         //забираем языковый параметр, который всегда первый и устанавливаем язык пользователя
-        
+
         if (in_array($uriParts[0], $domain->site_langs)) {
             app()->setLocale(array_shift($uriParts));
         } else {
@@ -562,7 +562,7 @@ class StructureService
         //опять собираем урл
         return trim(implode('/', $uriParts), '/');
     }
-    
+
     /**
      * Вернуть параметры затребованной пейджи
      * @param string $uri -- путь к странице
@@ -579,7 +579,7 @@ class StructureService
 
             //создаем цепочку пейджей
             $uriPath[] = $part;
-          
+
             //если пейджи с указанной цепочкой не существует - прерываемся
             if (!isset($urls[implode(self::PATH_DELIMITER, $uriPath)])) {
                 return null;
@@ -592,18 +592,19 @@ class StructureService
             //получаем параметры страницы по затребованному урлу
             $pageData = &$urls[implode(self::PATH_DELIMITER, $uriPath)];
         }
-        
-        return isset($pageData['id']) ? self::getPageById($pageData['id']) : null;        
+
+        return isset($pageData['id']) ? self::getPageById($pageData['id']) : null;
     }
-    
+
     /**
      * Поиск подходящих параметров в настройках алиасов
-     * 
+     *
      * @param string $url -- запрашиваемый путь
      * @return array - данные для работы
      */
     public function aliasesUrlParser(string $url): ?array
     {
+        //dd(ScmsHelper::getFrontRoutes());
         $results = null;
         foreach (ScmsHelper::getFrontRoutes() as $rule) {
 
@@ -621,14 +622,14 @@ class StructureService
                 if (isset($rule['vars'])) {
                     $results['vars'] = self::initializeVariables($url, $match, $rule['vars']);
                 }
-        
+
                 break;
             }
         }
-        
+
         return $results;
     }
-    
+
     /*
      * @param string $uri
      * @throw Exception
@@ -639,11 +640,11 @@ class StructureService
         $uri = trim($uri, '/');
         //определяем текущий язык
         $uri = $this->resolveLanguage($domain, $uri);
-        
+
         $uriToFetch = empty($uri) ? 'index' : 'index/' . $uri;
-        
+
         $page = $this->fetchPage($domain, $uriToFetch);
-        
+
         $aliasResult = null;
         if ($page === null) {
             $aliasResult = $this->aliasesUrlParser($uri);
@@ -655,11 +656,11 @@ class StructureService
         if ($page === null) {
             $page = $this->fetchPage($domain, 'index/404');
         }
-        
+
         if ($page !== null) {
             FrontPage::setDomain($domain)
                 ->setPage($page);
-                        
+
             if (!empty($aliasResult['vars'])) {
                 FrontPage::setVars($aliasResult['vars']);
             }
@@ -668,25 +669,25 @@ class StructureService
             foreach ((new BlockFetchService)->itemsByPage($page->id) as $block) {
                 $widgets[$block->alias] = unserialize($block->content)->run($block->alias);
             }
-            
+
             // replacing area widgets
             $content = (string)view('templates.' . self::getTemplateAttrById($page->template_id, 'alias'));
             foreach ($widgets as $w_alias => $w_content) {
                 $content = str_replace(
-                    sprintf(self::EMBED_TEMPLATE, $w_alias), 
-                    $w_content, 
+                    sprintf(self::EMBED_TEMPLATE, $w_alias),
+                    $w_content,
                     $content
                 );
             }
             //replacing empty area
             $content = preg_replace('/<!--@(.+?)-->/', '', $content);
-            
+
             return view('layouts.' . self::getTemplateAttrById($page->template_id, 'layout'), compact('content'));
-        } else {    
+        } else {
             throw new \Exception('404 page not foud');
         }
     }
-    
+
     /*
      * @param Page $page
      * @return array
@@ -696,7 +697,7 @@ class StructureService
         $data = [];
         foreach ((new BlockFetchService)->itemsByPage($page->id) as $block) {
             $blockModel = unserialize($block->content);
-            
+
             $data[$block->alias] = [
                 'widget_id' => $blockModel->widget_id,
                 'action' => $blockModel->action,
@@ -704,7 +705,7 @@ class StructureService
         }
         return $data;
     }
-	
+
     /**
      * @param string $attr
      * @return string|null
@@ -714,8 +715,8 @@ class StructureService
 		$data = Arr::pluck(self::TEMPLATES, $attr, 'id');
 		return !empty($data[$id]) ? $data[$id] : null;
 	}
-	
-    
+
+
     /**
      * Инициализируем переменные
      * @param string $url
@@ -744,13 +745,13 @@ class StructureService
 
             $result[trim($varName)] = !empty($match[$pos]) ? urldecode($match[$pos]) : null;
         }
-        
+
         return $result;
     }
- 
+
     /**
      * Строим вектор урлов в качестве ключей и сетапов страниц, в качестве значений
-     * 
+     *
      * @param Domain $domain
      * @return array -- вектор урлов/настроек страниц
      */
@@ -760,10 +761,10 @@ class StructureService
         $urlsMap = [];
 
         $pages = self::getDomainPages($domain)->sortBy('structure_id');
-        
+
         //работаем, если имеются страницы
         if (!empty($pages)) {
-     
+
             $depth = 0;
 
             $previousIdLenth = 6;
@@ -781,7 +782,7 @@ class StructureService
                    $p = self::getPageByStructureId($sglob_id);
                    $paths[] = $p->alias;
                 }
-                
+
                 $urlsMap[implode(self::PATH_DELIMITER, $paths)] = [
                     'id' => $page['id'],
                     'structure_id' => $page['structure_id'],
@@ -790,7 +791,7 @@ class StructureService
         }
         return $urlsMap;
     }
-    
+
     /*
      * @param string $structureId
      * @return Domain|null
@@ -801,8 +802,8 @@ class StructureService
         $root = self::getPageByStructureId($structureId);
         if ($root != null) {
             return Domain::getAliasById($root->domain_id);
-        } 
-        
+        }
+
         return null;
     }
 
@@ -813,18 +814,18 @@ class StructureService
     {
         return (new PageFetchService)->all();
     }
-    
+
     /*
      * @param Domain $domain
      * @return Collection
      */
     public static function getDomainPages(Domain $domain): Collection
-    {        
+    {
         return self::getAllPages()->reject(function ($item) use ($domain) {
             return $item->domain_id !== $domain->id;
         });
     }
-    
+
     /*
      * @param Domain $domain
      * @param Page $page
@@ -836,7 +837,7 @@ class StructureService
             return $value['id'] == $page->id;
         });
         $path = array_keys($pagaData)[0];
-        
+
         $breadcrumbs = [];
 
         $paths = explode(self::PATH_DELIMITER, $path);
@@ -856,18 +857,18 @@ class StructureService
             $pageBread = self::getPageByStructureId($structure_id);
             if ($pageBread->is_breadcrumbs) {
                 $urlParts = explode('/', $url);
-                $breadcrumbs[end($urlParts)] = [ 
-                    'title' => !empty($pageBread->breacrumbs_title) ? 
+                $breadcrumbs[end($urlParts)] = [
+                    'title' => !empty($pageBread->breacrumbs_title) ?
                         $pageBread->breacrumbs_title : $pageBread->seo_title,
                     'url' => $url,
                 ];
                 $k++;
             }
         }
-		
+
 	   return $breadcrumbs;
     }
-    
+
     /*
      * @param Domain $domain
      * @param  int $pageId
@@ -877,7 +878,7 @@ class StructureService
     {
         $pages = self::getAllPages();
         $structureAlias = Arr::pluck($pages, 'alias', 'structure_id');
-        
+
         $structure_id = self::getPageById($pageId)->structure_id;
 
         $items = str_split($structure_id, self::ID_PART_LEN);
@@ -905,5 +906,5 @@ class StructureService
         }
 
         return d_l($link);
-    }    
+    }
 }

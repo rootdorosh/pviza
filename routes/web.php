@@ -17,6 +17,19 @@ Route::get('flush', function() {
     \Cache::flush();
 });
 
+Route::group([
+        'middleware' => [],
+    ], function ($router) {
+    
+    foreach (ScmsHelper::getModules() as $module) {
+        $file = app_path() . '/Modules/' . $module . '/Front/Http/routes.php';
+        if (is_file($file)) {
+            include $file;
+        }
+    }
+});
+
+
 Route::get('/', function() {
     
     return (new \App\Modules\Structure\Services\StructureService)->renderPage('/');

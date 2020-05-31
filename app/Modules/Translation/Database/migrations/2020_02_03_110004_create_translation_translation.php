@@ -16,6 +16,7 @@ class CreateTranslationTranslation extends Migration
         Schema::create('translations', function (Blueprint $table) {
 			$table->increments('id');
 			$table->string('slug');
+			$table->string('params')->nullable();
         });
     }
 

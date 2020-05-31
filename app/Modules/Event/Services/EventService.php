@@ -122,7 +122,7 @@ class EventService
             
             if (!empty($emails)) {
                  foreach ($vars as $var) {
-                    if (isset($params[$var])) {
+                    if (array_key_exists($var, $params)) {
                         $event->subject = str_replace("[{$var}]", $params[$var], $event->subject);
                         $event->body = str_replace("[{$var}]", $params[$var], $event->body);
                     }

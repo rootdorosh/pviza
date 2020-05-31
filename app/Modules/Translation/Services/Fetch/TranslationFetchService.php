@@ -39,13 +39,33 @@ class TranslationFetchService extends FetchService
         if (!empty($params)) {
             preg_match_all('/(\[(.*?)\])/', $text, $matches);
             foreach ($matches[2] as $index => $var) {
-                if (isset($params[$index])) {
-                    $text = str_replace("[{$var}]", $params[$index], $text);
+                if (isset($params[$var])) {
+                    $text = str_replace("[{$var}]", $params[$var], $text);
                 }
             }
         }
         
         return $text;
+    } 
+    
+    /**
+     * @param strin $slug
+     * @return array
+     */
+    public function getArray(string $slug): array
+    {
+        $data = $this->getData();
+        
+        $items = array_filter($data, function($key) use($slug) {
+            $len = strlen($slug); 
+            return (substr($key, 0, $len) === $slug);            
+        }, ARRAY_FILTER_USE_KEY);
+        $data = [];
+        foreach ($items as $k => $v) {
+            $data[str_replace($slug, '', $k)] = $v;
+        }
+        //dd($data);
+        return $data;
     } 
 }
 

@@ -19,6 +19,14 @@ use DB;
 class VacancyFetchService extends FetchService
 {
     /**
+     * @return  array
+     */
+    public static function getList(): array
+    {
+        return Vacancy::get()->pluck('title', 'id')->toArray();
+    }
+
+    /**
      * @return  int
      */
     public static function getDefaultRank(): int
@@ -65,7 +73,7 @@ class VacancyFetchService extends FetchService
      */
     public function getItems(array $filter): array
     {
-        $key = $this->tag . '_getItems_' . l() . serialize($filter);
+        $key = $this->tag . '__getItems_' . l() . serialize($filter);
         $tags = [
             $this->tag,
             (new Location)->tag,
@@ -77,12 +85,12 @@ class VacancyFetchService extends FetchService
                 $page = !empty($filter['page']) ? (int) $filter['page'] : 1;
                 $limit = !empty($filter['limit']) ? (int) $filter['limit'] : 10;
                 $offset = $page * $limit - $limit;
-            
+
                 $wheres = ['v.is_active = 1'];
                 if (!empty($filter['q'])) {
                     $q = trim($filter['q']);
                     $q = str_replace("'", "''", $q);
-                    
+
                     $wheres[] = implode(' OR ', [
                         "vac_lang.title LIKE '%{$q}%'",
                         "vac_lang.work_schedule LIKE '%{$q}%'",
@@ -90,20 +98,20 @@ class VacancyFetchService extends FetchService
                         "vac_lang.description LIKE '%{$q}%'",
                     ]);
                 }
-                
+
                 if (!empty($filter['location_id'])) {
                     $wheres[] = 'vs_loc.location_id = ' . (int) $filter['location_id'];
                 }
-                
+
                 if (!empty($filter['type_id'])) {
                     $wheres[] = 'vs_type.type_id = ' . (int) $filter['type_id'];
                 }
-                
+
                 if (!empty($filter['category_id'])) {
                     $wheres[] = 'vs_cat.category_id = ' . (int) $filter['category_id'];
                 }
                 $sql = "
-                    SELECT 
+                    SELECT
                         v.id AS id,
                         v.date_posted AS date_posted,
                         v.hiring_organization AS hiring_organization,
@@ -125,7 +133,7 @@ class VacancyFetchService extends FetchService
                     LEFT JOIN vacancy_categories_lang AS cat_lang ON vs_cat.category_id = cat_lang.category_id AND cat_lang.locale = '" . l() . "'
                     WHERE " . implode(' AND ', $wheres) . "
                     GROUP BY v.id
-                    ORDER BY v.rank DESC, v.date_posted DESC
+                    ORDER BY v.rank ASC
                     LIMIT $offset, $limit
                 ";
                 return DB::select($sql);
@@ -147,13 +155,13 @@ class VacancyFetchService extends FetchService
         ];
 
         return Cache::tags($this->tag)->remember($key, 1, function() use ($filter) {
-                
+
                 $wheres = ['v.is_active = 1'];
-                
+
                 if (!empty($filter['q'])) {
                     $q = trim($filter['q']);
                     $q = str_replace("'", "''", $q);
-                    
+
                     $wheres[] = implode(' OR ', [
                         "vac_lang.title LIKE '%{$q}%'",
                         "vac_lang.work_schedule LIKE '%{$q}%'",
@@ -161,21 +169,21 @@ class VacancyFetchService extends FetchService
                         "vac_lang.description LIKE '%{$q}%'",
                     ]);
                 }
-                
+
                 if (!empty($filter['location_id'])) {
                     $wheres[] = 'vs_loc.location_id = ' . (int) $filter['location_id'];
                 }
-                
+
                 if (!empty($filter['type_id'])) {
                     $wheres[] = 'vs_type.type_id = ' . (int) $filter['type_id'];
                 }
-                
+
                 if (!empty($filter['category_id'])) {
                     $wheres[] = 'vs_cat.category_id = ' . (int) $filter['category_id'];
                 }
-                
+
                 $data = DB::select("
-                    SELECT 
+                    SELECT
                         COUNT(DISTINCT v.id) AS c
                     FROM vacancy AS v
                     LEFT JOIN vacancy_lang AS vac_lang ON v.id = vac_lang.vacancy_id AND vac_lang.locale = '" . l() . "'
@@ -184,7 +192,7 @@ class VacancyFetchService extends FetchService
                     LEFT JOIN vacancy_vs_category AS vs_cat ON v.id = vs_cat.vacancy_id
                     WHERE " . implode(' AND ', $wheres) . "
                 ");
-                
+
                 return $data[0]->c;
             });
     }
@@ -299,31 +307,62 @@ class VacancyFetchService extends FetchService
 
     /*
      * @param string $alias
-     * @return Vacancy
+     * return Vacancy
      */
     public function getByAlias(string $alias):? Vacancy
-    {   
+    {
         $key = $this->tag . __FUNCTION__ . '_' . l() . $alias;
-        
+
         return Cache::tags($this->tag)->remember($key, 1, function() use ($alias) {
-            $time = time();
-            
-            return $this->model::where('is_active', 1)
-                ->leftJoin('vacancy_lang', 'vacancy.id', 'vacancy_lang.vacancy_id')
-                ->where('alias', $alias)
-                ->where('vacancy_lang.locale', l())
-                ->first();
-        });        
+                $sql = "
+                    SELECT
+                        v.id AS id,
+                        v.date_posted AS date_posted,
+                        v.hiring_organization AS hiring_organization,
+                        vac_lang.alias AS alias,
+                        vac_lang.title AS title,
+                        vac_lang.work_schedule AS work_schedule,
+                        vac_lang.contract_type AS contract_type,
+                        vac_lang.salary AS salary,
+                        vac_lang.seo_h1 AS seo_h1,
+                        vac_lang.seo_title AS seo_title,
+                        vac_lang.seo_description AS seo_description,
+                        GROUP_CONCAT(DISTINCT loc_lang.title ORDER BY loc_lang.title SEPARATOR ', ') AS locations,
+                        GROUP_CONCAT(DISTINCT type_lang.title ORDER BY type_lang.title SEPARATOR ', ') AS types,
+                        GROUP_CONCAT(DISTINCT cat_lang.title ORDER BY cat_lang.title SEPARATOR ', ') AS categories
+                    FROM vacancy AS v
+                    LEFT JOIN vacancy_lang AS vac_lang ON v.id = vac_lang.vacancy_id AND vac_lang.locale = '" . l() . "'
+                    LEFT JOIN vacancy_vs_location AS vs_loc ON v.id = vs_loc.vacancy_id
+                    LEFT JOIN vacancy_locations_lang AS loc_lang ON vs_loc.location_id = loc_lang.category_id AND loc_lang.locale = '" . l() . "'
+                    LEFT JOIN vacancy_vs_type AS vs_type ON v.id = vs_type.vacancy_id
+                    LEFT JOIN vacancy_types_lang AS type_lang ON vs_type.type_id = type_lang.category_id AND type_lang.locale = '" . l() . "'
+                    LEFT JOIN vacancy_vs_category AS vs_cat ON v.id = vs_cat.vacancy_id
+                    LEFT JOIN vacancy_categories_lang AS cat_lang ON vs_cat.category_id = cat_lang.category_id AND cat_lang.locale = '" . l() . "'
+                    WHERE vac_lang.alias = '{$alias}' AND v.is_active = 1
+                    GROUP BY v.id
+                    LIMIT 1
+                ";
+                $data = DB::select($sql);
+                $vacancy = null;
+                if (!empty($data)) {
+                    $vacancy = new Vacancy;
+                    foreach ((array)$data[0] as $key => $val) {
+                        $vacancy->$key = $val;
+                    }
+                }
+
+                return $vacancy;
+        });
     }
-    
+
     /*
      * @param (int $modelId
      * @return array
      */
     public function getLangMapLinks(int $modelId): array
-    {   
+    {
         $key = $this->tag . __FUNCTION__ . '_' . $modelId;
-        
+
         return Cache::tags($this->tag)->remember($key, 1, function() use ($modelId) {
            $items = DB::select("SELECT locale, alias FROM vacancy_lang WHERE vacancy_id = {$modelId}");
            $data = [];
@@ -331,8 +370,8 @@ class VacancyFetchService extends FetchService
               $data[$item->locale] = d_l('/jobs/' . $item->alias, $item->locale);
            }
            return $data;
-        });        
+        });
     }
-    
-    
+
+
 }

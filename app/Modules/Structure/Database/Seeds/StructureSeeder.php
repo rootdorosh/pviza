@@ -28,16 +28,16 @@ class StructureSeeder extends Seeder
         ] as $name) {
             $this->makeContentBlock($name);
         }
-        
+
         $structureService = new StructureService;
-        
+
         $domainData = factory(Domain::class)->make([
             'alias' => config('app.domain'),
             'is_active' => 1,
         ]);
-        
+
         $domain = Domain::updateOrCreate(
-            ['alias' => config('app.domain')], 
+            ['alias' => config('app.domain')],
             ExtArrHelper::keyToItems($domainData->toArray(), 'translations', 'locale')
         );
         //index
@@ -46,10 +46,10 @@ class StructureSeeder extends Seeder
             'widget_id' => 'Vacancy',
             'action' => 'homeSearchForm',
         ]);
-        
+
         //jobs
         $jobsPage = $structureService->makePage(
-            $indexPage, 
+            $indexPage,
             ['alias' => 'jobs', 'seo_h1' => 'Jobs', 'seo_title' => 'Jobs',]
         );
         $this->attachContentBlockBackImage($jobsPage, 'content1', ['title' => 'Вакансії']);
@@ -58,52 +58,88 @@ class StructureSeeder extends Seeder
             'action' => 'index',
         ]);
         $this->attachContentBlockFooterSeoText($jobsPage, 'content3', [
-            'name' => 'jobs_foter_seo_text', 
-            'title' => 'Вакансії', 
+            'name' => 'jobs_foter_seo_text',
+            'title' => 'Вакансії',
             'body' => '<p>Seo text example ... </p>',
         ]);
-        
+
         // job location
         $jobLocationPage = $structureService->makePage(
-            $jobsPage, 
+            $jobsPage,
             ['alias' => 'location', 'seo_title' => 'Location',]
         );
         $this->attachBlock($jobLocationPage, 'content1', [
             'widget_id' => 'Vacancy',
             'action' => 'location',
-        ]); 
-        
+        ]);
+
         // job category
         $jobCategoryPage = $structureService->makePage(
-            $jobsPage, 
+            $jobsPage,
             ['alias' => 'category', 'seo_title' => 'Category',]
         );
         $this->attachBlock($jobCategoryPage, 'content1', [
             'widget_id' => 'Vacancy',
             'action' => 'category',
-        ]); 
-        
+        ]);
+
         // job type
         $jobTypePage = $structureService->makePage(
-            $jobsPage, 
+            $jobsPage,
             ['alias' => 'type', 'seo_title' => 'Type',]
         );
         $this->attachBlock($jobTypePage, 'content1', [
             'widget_id' => 'Vacancy',
             'action' => 'type',
-        ]);       
-        
+        ]);
+
         // vacancy
         $vacancyPage = $structureService->makePage(
-            $jobsPage, 
+            $jobsPage,
             ['alias' => 'vacancy', 'seo_title' => 'Vacancy',]
         );
         $this->attachBlock($vacancyPage, 'content1', [
             'widget_id' => 'Vacancy',
             'action' => 'view',
-        ]);        
+        ]);
+
+        // blog index
+        $blogPage = $structureService->makePage(
+            $indexPage,
+            ['alias' => 'viza-work-blog', 'seo_h1' => 'Blogs', 'seo_title' => 'Blogs',]
+        );
+        $this->attachContentBlockBackImage($blogPage, 'content1', ['title' => 'Blog']);
+        $this->attachBlock($blogPage, 'content2', [
+            'widget_id' => 'Blog',
+            'action' => 'index',
+        ]);
+        $this->attachContentBlockFooterSeoText($blogPage, 'content3', [
+            'name' => 'blogs_foter_seo_text',
+            'title' => 'Blog',
+            'body' => '<p>Seo text example for blog ... </p>',
+        ]);
+
+        // blog view
+        $blogViewPage = $structureService->makePage(
+            $blogPage,
+            ['alias' => 'view', 'seo_h1' => '', 'seo_title' => 'View',]
+        );
+        $this->attachBlock($blogViewPage, 'content1', [
+            'widget_id' => 'Blog',
+            'action' => 'view',
+        ]);
+
+        // blog category
+        $blogCategoryPage = $structureService->makePage(
+            $blogPage,
+            ['alias' => 'category', 'seo_h1' => '', 'seo_title' => 'Category',]
+        );
+        $this->attachBlock($blogCategoryPage, 'content1', [
+            'widget_id' => 'Blog',
+            'action' => 'category',
+        ]);
     }
-        
+
     /*
      * @param string array $params
      * @return void
@@ -113,19 +149,19 @@ class StructureSeeder extends Seeder
 		$attrs = factory(ContentBlock::class)->make([
 			'name' => $params['title'],
 			'is_active' => 1,
-			'is_hide_editor' => 0,            
+			'is_hide_editor' => 0,
         ])->getAttributes();
-        
+
 		foreach (config('translatable.locales') as $locale) {
 			$attrs[$locale]	= [
 				'title' => $params['title'],
 				'body' => $params['title'],
 			];
 		}
-		
+
         return resolve('App\Modules\ContentBlock\Services\Crud\ContentBlockCrudService')->store($attrs);
-    }    
-        
+    }
+
     /*
      * @param string array $params
      * @return void
@@ -135,19 +171,19 @@ class StructureSeeder extends Seeder
 		$attrs = factory(ContentBlock::class)->make([
 			'name' => $params['name'],
 			'is_active' => 1,
-			'is_hide_editor' => 0,            
+			'is_hide_editor' => 0,
         ])->getAttributes();
-        
+
 		foreach (config('translatable.locales') as $locale) {
 			$attrs[$locale]	= [
 				'title' => $params['title'],
 				'body' => $params['body'],
 			];
 		}
-		
+
         return resolve('App\Modules\ContentBlock\Services\Crud\ContentBlockCrudService')->store($attrs);
-    }    
-        
+    }
+
     /*
      * @param Page $page
      * @param string $alias
@@ -158,7 +194,7 @@ class StructureSeeder extends Seeder
     {
         if (!$this->hasBlock($page, $alias)) {
             $contentBlock = $this->makeContentBlockBackImage($params);
-            
+
             (new BlockCrudService)->insert($page, [
                 'widget_id' => 'ContentBlock',
                 'alias' => $alias,
@@ -166,9 +202,9 @@ class StructureSeeder extends Seeder
                 'template' => 'background_image_title',
                 'block_id' => $contentBlock->id,
             ]);
-        }        
-    }    
-        
+        }
+    }
+
     /*
      * @param Page $page
      * @param string $alias
@@ -179,7 +215,7 @@ class StructureSeeder extends Seeder
     {
         if (!$this->hasBlock($page, $alias)) {
             $contentBlock = $this->makeContentBlockFooterSeoText($params);
-            
+
             (new BlockCrudService)->insert($page, [
                 'widget_id' => 'ContentBlock',
                 'alias' => $alias,
@@ -187,9 +223,9 @@ class StructureSeeder extends Seeder
                 'template' => 'footer_seo_text',
                 'block_id' => $contentBlock->id,
             ]);
-        }        
-    }    
-        
+        }
+    }
+
     /*
      * @param Page $page
      * @return string $alias
@@ -201,9 +237,9 @@ class StructureSeeder extends Seeder
         if (!$this->hasBlock($page, $alias)) {
             $blockData['alias'] = $alias;
             (new BlockCrudService)->insert($page, $blockData);
-        }        
-    }    
-        
+        }
+    }
+
     /*
      * @param Page $page
      * @return string $alias
@@ -212,8 +248,8 @@ class StructureSeeder extends Seeder
 	public function hasBlock(Page $page, string $alias): bool
     {
         return in_array($alias, $page->blocks()->pluck('alias')->toArray()) ? true : false;
-    }    
-        
+    }
+
     /*
      * @param string $name
      * @return ContentBlock
@@ -224,7 +260,7 @@ class StructureSeeder extends Seeder
 		if ($model !== null) {
 			return $model;
 		}
-		
+
 		$body = file_get_contents(resource_path() . '/content_blocks/' . $name . '.html');
 		$attrs = [
 			'name' => $name,
@@ -237,10 +273,10 @@ class StructureSeeder extends Seeder
 				'body' => $body,
 			];
 		}
-		
+
         return resolve('App\Modules\ContentBlock\Services\Crud\ContentBlockCrudService')->store($attrs);
 	}
-    
+
     /*
      * @param Page $page
      * @param string $alias
@@ -252,7 +288,7 @@ class StructureSeeder extends Seeder
     {
         if (!$this->hasBlock($page, $alias)) {
             $contentBlock = $this->makeContentBlock($blockName);
-            
+
             (new BlockCrudService)->insert($page, [
                 'widget_id' => 'ContentBlock',
                 'alias' => $alias,
@@ -260,9 +296,9 @@ class StructureSeeder extends Seeder
                 'template' => $template,
                 'block_id' => $contentBlock->id,
             ]);
-        }        
-    }    
-    
+        }
+    }
+
 
     /*
      * @param string $name
@@ -274,7 +310,7 @@ class StructureSeeder extends Seeder
 		if ($model !== null) {
 			return $model;
 		}
-		
+
         return factory($name)->create();
 	}
 }

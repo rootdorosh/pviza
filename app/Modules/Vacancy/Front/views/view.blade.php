@@ -44,80 +44,43 @@
                 <p class="text-style-1">
                     {!! str_replace("\n", "<br/>", $vacancy->description) !!}
                 </p>
-
-
-                <div class="block offset-top-2">
-                    <h4>{{ t('related-vacancies-title') }}</h4>
-                    <table class="table-job-listing table-responsive">
-                        <tr>
-                            <td class="table-job-listing-main">
-                                <!-- Company Minimal-->
-                                <article class="company-minimal">
-                                    <figure class="company-minimal-figure"><img class="company-minimal-image" src="images/company-2-53x46.png" alt=""/>
-                                    </figure>
-                                    <div class="company-minimal-main">
-                                        <h5 class="company-minimal-name"><a href="job-details.html">Marketing Director</a></h5>
-                                        <p>UpBook, Saint-Etienne, France</p>
-                                    </div>
-                                </article>
-                            </td>
-                            <td class="table-job-listing-badge"><span class="badge badge-secondary">Part Time</span></td>
-                        </tr>
-                        <tr>
-                            <td class="table-job-listing-main">
-                                <!-- Company Minimal-->
-                                <article class="company-minimal">
-                                    <figure class="company-minimal-figure"><img class="company-minimal-image" src="images/company-3-42x42.png" alt=""/>
-                                    </figure>
-                                    <div class="company-minimal-main">
-                                        <h5 class="company-minimal-name"><a href="job-details.html">Front End Developer</a></h5>
-                                        <p>MediaLab, Derry, United Kingdom</p>
-                                    </div>
-                                </article>
-                            </td>
-                            <td class="table-job-listing-badge"><span class="badge badge-tertiary">Freelance</span></td>
-                        </tr>
-                        <tr>
-                            <td class="table-job-listing-main">
-                                <!-- Company Minimal-->
-                                <article class="company-minimal">
-                                    <figure class="company-minimal-figure"><img class="company-minimal-image" src="images/company-4-40x43.png" alt=""/>
-                                    </figure>
-                                    <div class="company-minimal-main">
-                                        <h5 class="company-minimal-name"><a href="job-details.html">Website Designer</a></h5>
-                                        <p>Creator, Los Angeles, CA, USA</p>
-                                    </div>
-                                </article>
-                            </td>
-                            <td class="table-job-listing-badge"><span class="badge">Full Time</span></td>
-                        </tr>
-                    </table>
-                </div>
             </div>
             <div class="col-lg-4">
                 <div class="row row-30 row-lg-50">
                     <div class="col-md-6 col-lg-12">
-                        <!-- RD Mailform-->
-                        <form class="rd-mailform form-corporate form-spacing-small form-corporate_sm" data-form-output="form-output-global" data-form-type="contact" method="post" action="bat/rd-mailform.php">
-                            <h4>Подати заяву на роботу</h4>
+                        <form class="rd-mailform form-corporate form-spacing-small form-corporate_sm" 
+                              id="form-resume" 
+                              action="{{ r('front.resume.send') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">  
+                            <input type="hidden" name="vacancy_id" value="{{ $vacancy->vacancy_id }}">  
+                            <h4>{{ t('resume.form.title') }}</h4>
                             <div class="form-wrap">
-                                <label class="form-label" for="contact-name">ІМЯ, ПРІЗВИЩЕ (ОБОВЯЗКОВО)</label>
-                                <input class="form-input" id="contact-name" type="text" name="name" data-constraints="@Required">
+                                <label class="form-label" for="resume-name">{{ t('resume.form.fields.name') }}</label>
+                                <input class="form-input" id="resume-name" type="text" name="name">
+                                <span class="message-error"></span>
                             </div>
                             <div class="form-wrap">
-                                <label class="form-label" for="contact-email">E-mail не обовязково</label>
-                                <input class="form-input" id="contact-email" type="email" name="email" data-constraints="@Required @Email">
+                                <label class="form-label" for="resume-email">{{ t('resume.form.fields.email') }}</label>
+                                <input class="form-input" id="resume-email" name="email">
+                                <span class="message-error"></span>
                             </div>
                             <div class="form-wrap">
-                                <label class="form-label" for="contact-phone">ТЕЛЕФОН (ОБОВЯЗКОВО)</label>
-                                <input class="form-input" id="contact-phone" type="text" name="phone" data-constraints="@PhoneNumber">
+                                <label class="form-label" for="resume-phone">{{ t('resume.form.fields.phone') }}</label>
+                                <input class="form-input" id="resume-phone" type="text" name="phone">
+                                <span class="message-error"></span>
                             </div>
                             <div class="form-wrap">
-                                <label class="form-label" for="contact-message">ПОВІДОМЛЕННЯ</label>
-                                <textarea class="form-input" id="contact-message" name="message" data-constraints="@Required"></textarea>
+                                <label class="form-label" for="resume-message">{{ t('resume.form.fields.message') }}</label>
+                                <textarea class="form-input" id="resume-message" name="message"></textarea>
+                                <span class="message-error"></span>
                             </div>
                             <div class="form-wrap">
-                                <button class="button button-block button-anorak button-primary" type="submit">Відправити заявку</button>
+                                <label class="form-label" for="resume-file"></label>
+                                <input class="form-input" id="resume-file" type="file" name="file">
+                                <span class="message-error"></span>
+                            </div>
+                            <div class="form-wrap">
+                                <button class="button button-block button-anorak button-primary js-submit" type="submit">{{ t('resume.form.btn.submit') }}</button>
                             </div>
                         </form>
                     </div>

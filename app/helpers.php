@@ -5,8 +5,30 @@ function d_l($path, $lang = null)
 	$locale = $lang ? $lang : app()->getLocale();
 	$url = sprintf('/%s/%s/', $locale, trim($path, '/'));
     $url = str_replace('//', '/', $url);
-    
+
     return $url;
+}
+
+if (! function_exists('r')) {
+    /*
+     * @return string
+     */
+    function r($name, $parameters = [], $absolute = false)
+    {
+        return route($name, $parameters, $absolute);
+    }
+}
+
+if (! function_exists('t_array')) {
+    /*
+     * @param string $slug
+     * @param array $params
+     * @return array
+     */
+    function t_array(string $slug): array
+    {
+        return (new App\Modules\Translation\Services\Fetch\TranslationFetchService)->getArray($slug);
+    }
 }
 
 
@@ -65,7 +87,7 @@ if (! function_exists('t')) {
      * @param array $params
      * @return string $slug
      */
-    function t(string $slug, array $params = []): string 
+    function t(string $slug, array $params = []): string
     {
         return (new App\Modules\Translation\Services\Fetch\TranslationFetchService)->get($slug, $params);
     }
@@ -76,7 +98,7 @@ if (! function_exists('phoneToInt')) {
      * @param string|null $phone
      * @return string
      */
-    function phoneToInt(string $phone = null): string 
+    function phoneToInt(string $phone = null): string
     {
         return str_replace(['+', ' ', '(', ')'], '', $phone);
     }
@@ -87,7 +109,7 @@ if (! function_exists('conf')) {
      * @param string $key
      * @return mixed
      */
-    function conf(string $key) 
+    function conf(string $key)
     {
         return Setting::get($key);
     }
@@ -148,4 +170,12 @@ function rmDirRecursive($path) {
 
 function datetime_to_ui($time) {
   	return date('Y-m-d', $time) . 'T' . date('H:i:s', $time) . '.000Z';
+}
+
+function sortArrayRankAsc ($a, $b) {
+    $ra = isset($a['rank']) ? $a['rank'] : 0;
+    $rb = isset($b['rank']) ? $b['rank'] : 0;
+
+    if ($ra == $rb) return 0;
+    return ($ra > $rb) ? 1 : -1;
 }

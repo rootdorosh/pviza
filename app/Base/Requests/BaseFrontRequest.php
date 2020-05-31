@@ -35,4 +35,21 @@ class BaseFrontRequest extends BaseRequest
         return true;
     }
     
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        $items = [];
+        foreach (static::attributes() as $key => $val) {
+            $items[$key . '.required'] = t('common.form.errors.required', [
+                'attribute' => $val,
+            ]);
+        }
+        
+        return $items;
+    }        
+    
 }
