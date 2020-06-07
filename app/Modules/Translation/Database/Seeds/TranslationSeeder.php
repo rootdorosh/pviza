@@ -46,6 +46,12 @@ class TranslationSeeder extends Seeder
             'categories' => 'Categories',
             'latest-posts' => 'Latest Posts',
             'search-the-blog' => 'Search the blog...',
+            'review.form.title' => 'Залишити відгук:',
+            'review.form.fields.name' => 'Ім\'я та прізвище',
+            'review.form.fields.email' => 'E-mail',
+            'review.form.fields.comment' => 'Відгук',
+            'review.form.btn.submit' => 'Відправити відгук',
+            'review.form.msg.success.sended' => 'Відгук Успішно відправлено',
             '' => '',
         ];
 

@@ -138,6 +138,20 @@ class StructureSeeder extends Seeder
             'widget_id' => 'Blog',
             'action' => 'category',
         ]);
+
+        // reviews
+        $reviewsPage = $structureService->makePage(
+            $indexPage,
+            ['alias' => 'vidguky', 'seo_h1' => '', 'seo_title' => 'Reviews',]
+        );
+        $this->attachContentBlockBackImage($reviewsPage, 'content1', ['title' => 'Reviews']);
+        $this->attachBlock($reviewsPage, 'content2', [
+            'widget_id' => 'Review',
+            'action' => 'index',
+        ]);
+
+
+
     }
 
     /*

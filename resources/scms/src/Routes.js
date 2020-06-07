@@ -13,6 +13,7 @@ import ContentBlockModule from '@/modules/contentBlock/routes';
 import EventModule from '@/modules/event/routes';
 import MenuModule from '@/modules/menu/routes';
 import ResumeModule from '@/modules/resume/routes';
+import ReviewModule from '@/modules/review/routes';
 import SettingsModule from '@/modules/settings/routes';
 import StructureModule from '@/modules/structure/routes';
 import TranslationModule from '@/modules/translation/routes';
@@ -46,6 +47,7 @@ const baseRoutes = [
       EventModule,
       MenuModule,
       ResumeModule,
+      ReviewModule,
       SettingsModule,
       StructureModule,
       TranslationModule,
