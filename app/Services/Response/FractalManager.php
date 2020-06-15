@@ -19,13 +19,13 @@ class FractalManager
     {
         $paginator->appends($request->validated());
         $collection = $paginator->getCollection();
-        
+
         $fractal = fractal()
            ->collection($collection, $transformer)
            ->paginateWith(new IlluminatePaginatorAdapter($paginator));
-        
+
         $data = self::camelCaseKeys($fractal->toArray());
-        
+
         if (!isset($data['meta']['pagination']['links']['next'])) {
             $data['meta']['pagination']['links']['next'] = null;
         }
@@ -33,12 +33,12 @@ class FractalManager
         if (!isset($data['meta']['pagination']['links']['previous'])) {
             $data['meta']['pagination']['links']['previous'] = null;
         }
-        
+
         $data['count'] = $data['meta']['pagination']['total'];
-        
+
         return $data;
     }
-    
+
     /**
      * @return array
      */
@@ -46,10 +46,10 @@ class FractalManager
     {
         $fractal = fractal()
            ->collection($collection, $transformer);
-        
+
         return $this->camelCaseKeys($fractal->toArray());
     }
-    
+
     /**
      * @return array
      */
@@ -57,7 +57,7 @@ class FractalManager
     {
         return $this->camelCaseKeys($fractal->toArray());
     }
-    
+
     /**
      * Convert array keys to camel case recursively.
      *

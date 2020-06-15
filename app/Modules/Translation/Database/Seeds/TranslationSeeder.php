@@ -52,6 +52,14 @@ class TranslationSeeder extends Seeder
             'review.form.fields.comment' => 'Відгук',
             'review.form.btn.submit' => 'Відправити відгук',
             'review.form.msg.success.sended' => 'Відгук Успішно відправлено',
+            'feedback.form.title' => 'Для зв\'язку з Нами, заповніть форму',
+            'feedback.form.sub_title' => 'Запитання чи пропозиції в звертанні опишіть детально',
+            'feedback.form.fields.name' => 'Ім\'я',
+            'feedback.form.fields.email' => 'E-mail',
+            'feedback.form.fields.phone' => 'Телефон',
+            'feedback.form.fields.message' => 'Повідомлення',
+            'feedback.form.btn.submit' => 'Відправити звернення',
+            'feedback.form.msg.success.sended' => 'Успішно відправлено',
             '' => '',
         ];
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
 	'title' => [
@@ -30,6 +30,8 @@ return [
 		'contact_viber' => 'Viber',
 		'contact_telegram' => 'Telegram',
 		'contact_whatsapp' => 'WhatsApp',
+		'cb_page_contact_header' => 'Contact page - header block',
+		'cb_page_contact_footer' => 'Contact page - footer block',
 	],
 	'description' => [
 	],

@@ -24,7 +24,9 @@ class StructureSeeder extends Seeder
     public function run()
     {
         foreach ([
-            'contact_footer'
+            'contact_footer',
+            'page_contact_header',
+            'page_contact_footer',
         ] as $name) {
             $this->makeContentBlock($name);
         }
@@ -147,6 +149,17 @@ class StructureSeeder extends Seeder
         $this->attachContentBlockBackImage($reviewsPage, 'content1', ['title' => 'Reviews']);
         $this->attachBlock($reviewsPage, 'content2', [
             'widget_id' => 'Review',
+            'action' => 'index',
+        ]);
+
+        // contact
+        $contactPage = $structureService->makePage(
+            $indexPage,
+            ['alias' => 'kontakty', 'seo_h1' => 'Контакти', 'seo_title' => 'Контакти',]
+        );
+        $this->attachContentBlockBackImage($contactPage, 'content1', ['title' => 'Контакти']);
+        $this->attachBlock($contactPage, 'content2', [
+            'widget_id' => 'Feedback',
             'action' => 'index',
         ]);
 

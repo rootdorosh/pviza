@@ -20,6 +20,8 @@ import contentBlockContentBlockForm from '@/modules/contentBlock/store/contentBl
 import eventEventIndex from '@/modules/event/store/event/index';
 import eventEventForm from '@/modules/event/store/event/form';
 import eventQueueIndex from '@/modules/event/store/queue/index';
+import feedbackFeedbackIndex from '@/modules/feedback/store/feedback/index';
+import feedbackFeedbackView from '@/modules/feedback/store/feedback/view';
 import menus from '@/modules/menu/store/menu/index';
 import menuForm from '@/modules/menu/store/menu/form';
 import resumeResumeIndex from '@/modules/resume/store/resume/index';
@@ -67,6 +69,8 @@ export default new Vuex.Store({
     eventEventIndex,
     eventEventForm,
     eventQueueIndex,
+    feedbackFeedbackIndex,
+    feedbackFeedbackView,
     menus,
     menuForm,
     resumeResumeIndex,

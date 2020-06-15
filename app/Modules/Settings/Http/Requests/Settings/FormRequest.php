@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare( strict_types = 1 );
 
@@ -8,7 +8,7 @@ use App\Base\Requests\BaseFormRequest;
 
 /**
  * Class FormRequest
- * 
+ *
  * @package  App\Modules\Settings
  *
  * @bodyParam key  string required  Key
@@ -24,7 +24,7 @@ class FormRequest extends BaseFormRequest
     {
         return $this->user()->hasPermission('settings.settings.index');
     }
-    
+
     /**
      * @return  array
      */
@@ -64,6 +64,14 @@ class FormRequest extends BaseFormRequest
                 'nullable',
                 'exists:content_blocks,id',
             ],
+            'cb_page_contact_header' => [
+                'nullable',
+                'exists:content_blocks,id',
+            ],
+            'cb_page_contact_footer' => [
+                'nullable',
+                'exists:content_blocks,id',
+            ],
             'contact_phone' => [
                 'nullable',
             ],
@@ -85,7 +93,7 @@ class FormRequest extends BaseFormRequest
 
 		return $rules;
 	}
-    
+
     /*
      * @return  array
      */

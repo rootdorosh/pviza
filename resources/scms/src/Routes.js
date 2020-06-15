@@ -11,6 +11,7 @@ import AdvantageModule from '@/modules/advantage/routes';
 import BlogModule from '@/modules/blog/routes';
 import ContentBlockModule from '@/modules/contentBlock/routes';
 import EventModule from '@/modules/event/routes';
+import FeedbackModule from '@/modules/feedback/routes';
 import MenuModule from '@/modules/menu/routes';
 import ResumeModule from '@/modules/resume/routes';
 import ReviewModule from '@/modules/review/routes';
@@ -45,6 +46,7 @@ const baseRoutes = [
       BlogModule,
       ContentBlockModule,
       EventModule,
+      FeedbackModule,
       MenuModule,
       ResumeModule,
       ReviewModule,

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare( strict_types = 1 );
 
@@ -24,27 +24,27 @@ class SettingsService
      * @var ContentBlockFetchService
      */
     private $contentBlockFetchService;
-    
+
     /*
     * @param  MenuFetchService $menuFetchService
     * @param  ContentBlockFetchService $contentBlockFetchService
     */
-    public function __construct(MenuFetchService $menuFetchService, ContentBlockFetchService $contentBlockFetchService) 
-    {    
-        $this->menuFetchService = $menuFetchService;    
-        $this->contentBlockFetchService = $contentBlockFetchService;    
+    public function __construct(MenuFetchService $menuFetchService, ContentBlockFetchService $contentBlockFetchService)
+    {
+        $this->menuFetchService = $menuFetchService;
+        $this->contentBlockFetchService = $contentBlockFetchService;
     }
-    
+
     /*
      * @return  array
      */
     public function getMeta(): array
     {
         $texts = __('settings::settings');
-        
+
         $data = [
             'labels' => $texts,
-            'tabs' =>  [           
+            'tabs' =>  [
                 'menu' => [
                     'title' => $texts['tabs']['menu'],
                     'fields' => [
@@ -123,11 +123,21 @@ class SettingsService
                             'options' => ExtArrHelper::valueTextFromList($this->contentBlockFetchService->getList()),
                             'value' => Setting::get('cb_contact_footer'),
                         ],
+                        'cb_page_contact_header' => [
+                            'type' => 'select',
+                            'options' => ExtArrHelper::valueTextFromList($this->contentBlockFetchService->getList()),
+                            'value' => Setting::get('cb_page_contact_header'),
+                        ],
+                        'cb_page_contact_footer' => [
+                            'type' => 'select',
+                            'options' => ExtArrHelper::valueTextFromList($this->contentBlockFetchService->getList()),
+                            'value' => Setting::get('cb_page_contact_footer'),
+                        ],
                     ],
                 ],
             ],
         ];
-        
+
         return $data;
 	}
 
@@ -138,10 +148,10 @@ class SettingsService
     public function store(array $data)
     {
         Settings::getQuery()->delete();
-        
+
         $setting = resolve('App\Modules\Settings\Container\Setting');
         foreach ($data as $key => $value) {
             $setting->set($key, $value);
-        }        
+        }
 	}
 }
