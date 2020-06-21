@@ -93,11 +93,14 @@
            :class="{'is-invalid': getErrorLocale('body', locale)}"
            label-cols-sm="2"
          >
-           <mavon-editor
-             :id="locale + '-body'"
-             v-model="model[locale].body"
-             v-if="!model.is_hide_editor"
-           />
+
+             <vue-trix
+                 :id="locale + '-body'"
+                 v-model="model[locale].body"
+                 v-if="!model.is_hide_editor"
+             />
+
+
            <b-form-textarea
              :id="locale + '-body'"
              v-model="model[locale].body"
@@ -130,10 +133,11 @@ import vSelect from 'vue-select'
 import ImageBase64 from '@/components/FormElements/InputFilePreview/ImageFileBase64'
 import ListGrid from '@/components/ListGrid/index.vue'
 import AdaptiveImages from '@/components/AdaptiveImages/index.vue'
+import VueTrix from 'vue-trix'
 
 export default {
   name: 'ContentBlockContentBlockForm',
-  components: { FormFooter, vSelect, ImageBase64, ListGrid, AdaptiveImages },
+  components: { FormFooter, vSelect, ImageBase64, ListGrid, AdaptiveImages, VueTrix },
   computed: {
     ...mapState('contentBlockContentBlockForm', {
       meta: state => state.meta,
