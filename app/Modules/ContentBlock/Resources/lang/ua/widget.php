@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
     'name' => 'Content Blocks',
@@ -7,10 +7,12 @@ return [
     ],
     'templates' => [
         'empty' 		=> 'Only content',
-        'background_image_title' => 'Background-image + Title',        
+        'background_image_title' => 'Background-image + Title',
+        'footer_seo_text' => 'Seo footer',
+        'style' => 'style',
     ],
     'attributes' => [
         'template' => 'Template',
-        'block_id' => 'Block',        
+        'block_id' => 'Block',
     ],
 ];

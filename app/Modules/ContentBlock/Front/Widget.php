@@ -13,19 +13,19 @@ class Widget extends WidgetBase
      * @var string
      */
     public $template;
-    
+
     /*
      * @var int
      */
     public $block_id;
-    
+
     /*
      * @var array
      */
     protected static $dependencies = [
         'contentBlockFetchService' => 'App\Modules\ContentBlock\Services\Fetch\ContentBlockFetchService',
     ];
-    
+
     /*
      * @return array
      */
@@ -46,7 +46,7 @@ class Widget extends WidgetBase
             ],
         ]);
     }
-    
+
     /*
      * @return array
      */
@@ -56,7 +56,7 @@ class Widget extends WidgetBase
         foreach (['index'] as $action) {
             $actions[$action] = __('contentBlock::widget.actions.' . $action);
         }
-        
+
         return $actions;
     }
 
@@ -69,7 +69,7 @@ class Widget extends WidgetBase
         foreach (['template', 'block_id'] as $attribute) {
             $attributes[$attribute] = __('contentBlock::widget.attributes.' . $attribute);
         }
-        
+
         return parent::attributes() + $attributes;
     }
 
@@ -87,35 +87,35 @@ class Widget extends WidgetBase
             ],
             'block_id' => [
                 'required',
-                'integer',                
-                'exists:' . (new ContentBlock)->table . ',id',                
+                'integer',
+                'exists:' . (new ContentBlock)->table . ',id',
             ],
         ];
     }
 
     /**
-     * @return array 
+     * @return array
      */
     public static function getTemplates(): array
     {
         $templates = [];
-        foreach (['empty', 'background_image_title', 'footer_seo_text'] as $template) {
+        foreach (['empty', 'background_image_title', 'footer_seo_text', 'style'] as $template) {
             $templates[$template] = __('contentBlock::widget.templates.' . $template);
         }
-        
+
         return $templates;
     }
-    
+
     /*
      * @return string
      */
     public function getName(): string
     {
-        return __('contentBlock::widget.name');        
+        return __('contentBlock::widget.name');
     }
-    
+
     /*
-     * 
+     *
      */
     public function actionIndex()
     {
