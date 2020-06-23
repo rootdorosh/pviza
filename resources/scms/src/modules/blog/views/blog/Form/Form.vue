@@ -1,7 +1,7 @@
 <template v-if="meta.isLoaded">
   <div>
-      
-      
+
+
     <form @submit.prevent="onSubmit('save')">
       <b-tabs content-class="mt-3">
         <b-tab :title="$t('tab.main')" :title-link-class="hasErrorsInTabMain() ? 'error':''" active>
@@ -12,7 +12,7 @@
            :label="meta.fields.category_id"
            :description="meta.description.category_id"
            :label-cols="2"
-         > 
+         >
            <b-form-select
              id="category_id"
              v-model="model.category_id"
@@ -28,7 +28,7 @@
            :label="meta.fields.is_active"
            :description="meta.description.is_active"
            :label-cols="2"
-         > 
+         >
            <b-form-radio-group
              id="is_active"
              :options="optionsNoYes"
@@ -46,7 +46,7 @@
            :label="meta.fields.is_home"
            :description="meta.description.is_home"
            :label-cols="2"
-         > 
+         >
            <b-form-radio-group
              id="is_home"
              :options="optionsNoYes"
@@ -63,7 +63,7 @@
            :label="meta.fields.image"
            :description="meta.description.image"
            :label-cols="2"
-         > 
+         >
            <image-base64 v-model="model.image" />
            <span class="text-danger" v-if="errors['image.content']">{{ errors['image.content'][0] }}</span>
          </b-form-group>
@@ -74,7 +74,7 @@
            :label="meta.fields.image_header"
            :description="meta.description.image_header"
            :label-cols="2"
-         > 
+         >
            <image-base64 v-model="model.image_header" />
            <span class="text-danger" v-if="errors['image_header.content']">{{ errors['image_header.content'][0] }}</span>
          </b-form-group>
@@ -86,7 +86,7 @@
            :label="meta.fields.created_at"
            :description="meta.description.created_at"
            :label-cols="2"
-         > 
+         >
            <datetime
              type="datetime"
              format="yyyy-MM-dd HH:mm:ss"
@@ -136,7 +136,7 @@
            :class="{'is-invalid': getErrorLocale('description', locale)}"
            label-cols-sm="2"
          >
-           <mavon-editor
+           <vue-trix
              :id="locale + '-description'"
              v-model="model[locale].description"
            />
@@ -187,13 +187,13 @@
 
         </b-tab>
       </b-tabs>
-        
+
       <form-footer
           :model="model"
           :isFetching="isFetching"
           @onCancel="onCancel"
           @onSaveExit="onSaveExit"
-       />        
+       />
     </form>
   </div>
 </template>
@@ -202,17 +202,18 @@
 import { mapState, mapActions, mapMutations } from 'vuex'
 import FormFooter from '@/components/FormFooter/FormFooter'
 import ImageBase64 from '@/components/FormElements/InputFilePreview/ImageFileBase64'
+import VueTrix from 'vue-trix'
 
 export default {
   name: 'BlogBlogForm',
-  components: { FormFooter, ImageBase64 },
+  components: { FormFooter, ImageBase64, VueTrix },
   computed: {
     ...mapState('blogBlogForm', {
       meta: state => state.meta,
-    
+
       model: state => state.model,
       isFetching: state => state.isFetching,
-      errors: state => state.errorMessage,  
+      errors: state => state.errorMessage,
     }),
   },
   methods: {

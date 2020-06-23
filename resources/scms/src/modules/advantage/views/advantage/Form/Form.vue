@@ -114,16 +114,16 @@
          </b-form-group>
 
          <b-form-group
-           :label="meta.fields.body"
-           :label-for="locale + '-body'"
-           :class="{'is-invalid': getErrorLocale('body', locale)}"
+           :label="meta.fields"
+           :label-for="locale + '-'"
+           :class="{'is-invalid': getErrorLocale('', locale)}"
            label-cols-sm="2"
          >
            <mavon-editor
-             :id="locale + '-body'"
-             v-model="model[locale].body"
+             :id="locale + '-'"
+             v-model="model[locale]"
            />
-           <span class="text-danger" v-if="getErrorLocale('body', locale)">{{ getErrorLocale('body', locale) }}</span>
+           <span class="text-danger" v-if="getErrorLocale('', locale)">{{ getErrorLocale('', locale) }}</span>
          </b-form-group>
 
         </b-tab>
@@ -145,10 +145,11 @@ import FormFooter from '@/components/FormFooter/FormFooter';
 import vSelect from 'vue-select';
 import InputFileBase64 from '@/components/FormElements/InputFilePreview/InputFileBase64';
 import { bus } from '@/main';
+import VueTrix from 'vue-trix'
 
 export default {
   name: 'AdvantageAdvantageForm',
-  components: { FormFooter, vSelect, InputFileBase64 },
+  components: { FormFooter, vSelect, InputFileBase64, VueTrix },
   computed: {
     ...mapState('advantageAdvantageForm', {
       meta: state => state.meta,

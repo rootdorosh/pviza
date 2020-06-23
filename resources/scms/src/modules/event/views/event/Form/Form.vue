@@ -111,7 +111,7 @@
            label-cols-sm="2"
            :description="model.vars"
          >
-           <mavon-editor
+           <vue-trix
              :id="locale + '-body'"
              v-model="model[locale].body"
            />
@@ -136,10 +136,11 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 import FormFooter from '@/components/FormFooter/FormFooter'
 import vSelect from 'vue-select'
 import ImageBase64 from '@/components/FormElements/InputFilePreview/ImageFileBase64'
+import VueTrix from 'vue-trix'
 
 export default {
   name: 'EventEventForm',
-  components: { FormFooter, vSelect, ImageBase64 },
+  components: { FormFooter, vSelect, ImageBase64, VueTrix },
   computed: {
     ...mapState('eventEventForm', {
       meta: state => state.meta,

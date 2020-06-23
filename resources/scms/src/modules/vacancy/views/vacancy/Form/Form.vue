@@ -10,7 +10,7 @@
            :label="meta.fields.categories"
            :description="meta.description.categories"
            :label-cols="2"
-         > 
+         >
            <select-multiple
                :options="meta.options.categories"
                v-model="model.categories"
@@ -25,7 +25,7 @@
            :label="meta.fields.types"
            :description="meta.description.types"
            :label-cols="2"
-         > 
+         >
            <select-multiple
                :options="meta.options.types"
                v-model="model.types"
@@ -40,7 +40,7 @@
            :label="meta.fields.locations"
            :description="meta.description.locations"
            :label-cols="2"
-         > 
+         >
            <select-multiple
                :options="meta.options.locations"
                v-model="model.locations"
@@ -55,7 +55,7 @@
            :label="meta.fields.is_active"
            :description="meta.description.is_active"
            :label-cols="2"
-         > 
+         >
            <b-form-radio-group
              id="is_active"
              :options="optionsNoYes"
@@ -73,7 +73,7 @@
            :label="meta.fields.is_popular"
            :description="meta.description.is_popular"
            :label-cols="2"
-         > 
+         >
            <b-form-radio-group
              id="is_popular"
              :options="optionsNoYes"
@@ -91,7 +91,7 @@
            :label="meta.fields.rank"
            :description="meta.description.rank"
            :label-cols="2"
-         > 
+         >
            <b-form-input
              type="text"
              id="rank"
@@ -106,7 +106,7 @@
            :label="meta.fields.date_posted"
            :description="meta.description.date_posted"
            :label-cols="2"
-         > 
+         >
            <b-form-input
              type="text"
              id="date_posted"
@@ -121,7 +121,7 @@
            :label="meta.fields.hiring_organization"
            :description="meta.description.hiring_organization"
            :label-cols="2"
-         > 
+         >
            <b-form-input
              type="text"
              id="hiring_organization"
@@ -136,7 +136,7 @@
            :label="meta.fields.image"
            :description="meta.description.image"
            :label-cols="2"
-         > 
+         >
            <image-base64 v-model="model.image" />
            <span class="text-danger" v-if="errors['image.content']">{{ errors['image.content'][0] }}</span>
          </b-form-group>
@@ -222,7 +222,7 @@
            :class="{'is-invalid': getErrorLocale('description', locale)}"
            label-cols-sm="2"
          >
-           <mavon-editor
+           <vue-trix
              :id="locale + '-description'"
              v-model="model[locale].description"
            />
@@ -273,13 +273,13 @@
 
         </b-tab>
       </b-tabs>
-        
+
       <form-footer
           :model="model"
           :isFetching="isFetching"
           @onCancel="onCancel"
           @onSaveExit="onSaveExit"
-       />        
+       />
     </form>
   </div>
 </template>
@@ -289,16 +289,17 @@ import { mapState, mapActions, mapMutations } from 'vuex'
 import FormFooter from '@/components/FormFooter/FormFooter'
 import ImageBase64 from '@/components/FormElements/InputFilePreview/ImageFileBase64'
 import SelectMultiple from '@/components/Form/SelectMultiple.vue'
+import VueTrix from 'vue-trix'
 
 export default {
   name: 'VacancyVacancyForm',
-  components: { FormFooter, ImageBase64, SelectMultiple },
+  components: { FormFooter, ImageBase64, SelectMultiple, VueTrix },
   computed: {
     ...mapState('vacancyVacancyForm', {
       meta: state => state.meta,
       model: state => state.model,
       isFetching: state => state.isFetching,
-      errors: state => state.errorMessage,  
+      errors: state => state.errorMessage,
     }),
   },
   methods: {
