@@ -3,8 +3,6 @@
     @foreach ($items as $item)
     <tr>
         <td class="table-job-listing-main">
-            <!-- Company Minimal-->
-            [ <?= $item->id?> ]
             <article class="company-minimal">
                 <div class="company-minimal-main">
                     <h5 class="company-minimal-title"><a href="{{ d_l('/jobs/' . $item->alias) }}">{{ $item->title }}</a></h5>
