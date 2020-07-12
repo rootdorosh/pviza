@@ -4,6 +4,7 @@
     <tr>
         <td class="table-job-listing-main">
             <!-- Company Minimal-->
+            [ <?= $item->id?> ]
             <article class="company-minimal">
                 <div class="company-minimal-main">
                     <h5 class="company-minimal-title"><a href="{{ d_l('/jobs/' . $item->alias) }}">{{ $item->title }}</a></h5>
@@ -11,19 +12,19 @@
                     <span class="hiringorganization">{{ $item->hiring_organization }}</span><br/>
                     @endif
                     @if (!empty($item->contract_type))
-                    <span class="sallary">{{ t('contract-type') }} {{ $item->contract_type }}</span><br/>  
+                    <span class="sallary">{{ t('contract-type') }} {{ $item->contract_type }}</span><br/>
                     @endif
                     @if (!empty($item->salary))
-                    <span class="sallary">{{ t('salary') }} {{ $item->salary }}</span><br/>  
+                    <span class="sallary">{{ t('salary') }} {{ $item->salary }}</span><br/>
                     @endif
                     @if (!empty($item->work_schedule))
-                    <span class="sallary">{{ t('work-schedule') }} {{ $item->work_schedule }}</span><br/>  
+                    <span class="sallary">{{ t('work-schedule') }} {{ $item->work_schedule }}</span><br/>
                     @endif
                     @if (!empty($item->types))
-                    {!! implode(' ', array_map(function($value) { return '<span class="badge badge-secondary text-lower">'.trim($value).'</span>'; }, explode(',', $item->types)))  !!}<br/>  
+                    {!! implode(' ', array_map(function($value) { return '<span class="badge badge-secondary text-lower">'.trim($value).'</span>'; }, explode(',', $item->types)))  !!}<br/>
                     @endif
                     @if (!empty($item->categories))
-                    {!! implode(' ', array_map(function($value) { return '<span class="badge badge-tertiary text-lower">'.trim($value).'</span>'; }, explode(',', $item->categories)))  !!}<br/>  
+                    {!! implode(' ', array_map(function($value) { return '<span class="badge badge-tertiary text-lower">'.trim($value).'</span>'; }, explode(',', $item->categories)))  !!}<br/>
                     @endif
                 </div>
             </article>
