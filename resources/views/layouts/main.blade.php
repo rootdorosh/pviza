@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 ?>
 <!DOCTYPE html>
@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
         <meta charset="utf-8">
         <meta name="robots" content="noindex, nofollow" />
-        <link rel="icon" href="/markup/images//favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/markup/images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400%7CPoppins:300,400,500,600">
         <link rel="stylesheet" href="/markup/css/bootstrap.css">
         <link rel="stylesheet" href="/markup/css/fonts.css">
@@ -17,9 +17,9 @@
     </head>
     <body>
         <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
-        <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/markup/images//ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+        <div class="ie-panel"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="/markup/images/ie8-panel/warning_bar_0000_us.jpg" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
         <div class="preloader">
-            <div class="preloader-body"> 
+            <div class="preloader-body">
                 <div class="preloader-item">
                     <svg width="40" height="40" viewbox="0 0 40 40">
                     <polygon class="rect" points="0 0 0 40 40 40 40 0"></polygon>
@@ -42,7 +42,7 @@
                                     <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
                                     <!-- RD Navbar Brand-->
 
-                                    <div class="rd-navbar-brand"><a class="brand" href="{{ d_l('/') }}"><img class="brand-logo-dark" src="/markup/images//logo-default-176x33.png" alt="" srcset="/markup/images//logo-default-352x67.png 2x"/><img class="brand-logo-light" src="/markup/images//logo-inverse-176x33.png" alt="" srcset="/markup/images//logo-inverse-352x67.png 2x"/></a>
+                                    <div class="rd-navbar-brand"><a class="brand" href="{{ d_l('/') }}"><img class="brand-logo-dark" src="/markup/images/logo-default-176x33.png" alt="" srcset="/markup/images/logo-default-176x33.png 2x"/><img class="brand-logo-light" src="/markup/images/logo-inverse-176x33.png" alt="" srcset="/markup/images/logo-inverse-352x67.png 2x"/></a>
                                     </div>
                                 </div>
                                 <div class="rd-navbar-main-element">
@@ -57,7 +57,7 @@
                                     <div class="rd-navbar-aside-item">
                                         <?php $langLinksMap = FrontPage::getLangLinksMap();?>
                                         @foreach (FrontPage::getDomain()->site_langs as $lang)
-                                        <li style="display:inline;">  
+                                        <li style="display:inline;">
                                             <a href="{{ isset($langLinksMap[$lang]) ? $langLinksMap[$lang] : switchUrl(request()->path(), $lang) }}">
                                                 <img src="/markup/images/{{ $lang }}.png" alt="{{ $lang }}" style="padding-left:5px;float:right;max-width:35px;max-height:25px;">
                                             </a>
@@ -70,9 +70,9 @@
                     </nav>
                 </div>
             </header>
-            
+
             {!! $content !!}
-            
+
             <!-- Page Footer-->
             <footer class="section footer-modern context-dark">
                 <div class="footer-modern-main">
@@ -89,7 +89,7 @@
                                 'menu_id' => conf('menu_footer_id'),
                                 'template' => 'footer',
                             ]))->run() !!}
-                            
+
                         </div>
                     </div>
                 </div>
