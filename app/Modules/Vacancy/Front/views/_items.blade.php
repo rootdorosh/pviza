@@ -27,7 +27,7 @@
                     {!! implode(' ', array_map(function($value) { return '<span class="badge badge-tertiary text-lower">'.trim($value).'</span>'; }, explode(',', $item->categories)))  !!}<br/>
                     @endif
                 </div>
-                
+
             </article>
         </td>
         <td class="table-job-listing-2-location">

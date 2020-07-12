@@ -73,6 +73,10 @@ class Widget extends WidgetBase
             'q' => request()->input('q'),
         ]);
 
+        if (isset($_GET['t'])) {
+            dd($items);
+        }
+
         return $this->view('index', compact('items', 'count', 'limit'));
     }
 
