@@ -19,7 +19,7 @@
                                     <div class="col-sm-6">
                                         <ul class="list list-xs">
                                             <li>
-                                                <p class="object-inline object-inline_sm"><span class="icon icon-1 text-primary mdi mdi-map-marker"></span><span class="joblocation">Пшеворськ</span></p>
+                                                <p class="object-inline object-inline_sm"><span class="icon icon-1 text-primary mdi mdi-map-marker"></span><span class="joblocation">{!! $vacancy->locations !!}</span></p>
                                             </li>
                                             <li>
                                                 <p class="object-inline object-inline_sm"><span class="icon icon-default text-primary mdi mdi-clock"></span><span>{!! $vacancy->date_posted !!}</span></p>
@@ -48,11 +48,11 @@
             <div class="col-lg-4">
                 <div class="row row-30 row-lg-50">
                     <div class="col-md-6 col-lg-12">
-                        <form class="rd-mailform form-corporate form-spacing-small form-corporate_sm" 
-                              id="form-resume" 
+                        <form class="rd-mailform form-corporate form-spacing-small form-corporate_sm"
+                              id="form-resume"
                               action="{{ r('front.resume.send') }}">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">  
-                            <input type="hidden" name="vacancy_id" value="{{ $vacancy->vacancy_id }}">  
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="vacancy_id" value="{{ $vacancy->vacancy_id }}">
                             <h4>{{ t('resume.form.title') }}</h4>
                             <div class="form-wrap">
                                 <label class="form-label" for="resume-name">{{ t('resume.form.fields.name') }}</label>
