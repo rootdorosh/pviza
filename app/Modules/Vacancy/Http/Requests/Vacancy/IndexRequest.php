@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 declare( strict_types = 1 );
 
@@ -10,18 +10,18 @@ use App\Modules\Vacancy\Models\Vacancy;
 
 /**
  * Class IndexRequest
- * 
+ *
  * @package  App\Modules\Vacancy
- * 
- * @bodyParam  page    integer  optional  page 
- * @bodyParam  per_page    integer  optional  per page 
- * @bodyParam  sort_dir    string  optional  sorting dir 
- * @bodyParam  sort_attr    string  optional  sorting attribute 
- * @bodyParam  id    integer  optional  id 
- * @bodyParam  is_active    integer  optional  Активність 
- * @bodyParam  is_popular    integer  optional  Популярна 
- * @bodyParam  rank    integer  optional  Порядок виводу 
- * @bodyParam  title    string  optional  Заголовок 
+ *
+ * @bodyParam  page    integer  optional  page
+ * @bodyParam  per_page    integer  optional  per page
+ * @bodyParam  sort_dir    string  optional  sorting dir
+ * @bodyParam  sort_attr    string  optional  sorting attribute
+ * @bodyParam  id    integer  optional  id
+ * @bodyParam  is_active    integer  optional  Активність
+ * @bodyParam  is_popular    integer  optional  Популярна
+ * @bodyParam  rank    integer  optional  Порядок виводу
+ * @bodyParam  title    string  optional  Заголовок
  * @bodyParam  alias    string  optional  Alias
  */
 
@@ -34,7 +34,7 @@ use App\Modules\Vacancy\Models\Vacancy;
     {
         return $this->user()->hasPermission('vacancy.vacancy.index');
     }
-    
+
     /*
      * @return  array
      */
@@ -135,7 +135,7 @@ use App\Modules\Vacancy\Models\Vacancy;
 
         ];
     }
-        
+
     /*
      * @return  array
      */
@@ -143,12 +143,13 @@ use App\Modules\Vacancy\Models\Vacancy;
     {
         return $this->getAttributesLabels('Vacancy', 'Vacancy') + parent::attributes();
     }
-    
+
     /*
      * @return  Builder
      */
     public function getQueryBuilder() : Builder
     {
+        $l = app()->getLocale();
 		$query = Vacancy::select([
 			'vacancy.*',
 			'vacancy_lang.title AS title',
@@ -156,7 +157,7 @@ use App\Modules\Vacancy\Models\Vacancy;
 		])
 			->leftJoin('vacancy_lang', 'vacancy_lang.vacancy_id', 'vacancy.id');
 
-		$query->where('vacancy_lang.locale', app()->getLocale());
+		$query->whereRaw("vacancy_lang.locale = '$l' OR vacancy_lang.locale IS NULL");
 
 
         if ($this->id !== null) {
@@ -182,7 +183,7 @@ use App\Modules\Vacancy\Models\Vacancy;
         if ($this->alias !== null) {
             $query->where("vacancy_lang.alias", "like", "%{$this->alias}%");
         }
-    
+
         return $query;
     }
 
