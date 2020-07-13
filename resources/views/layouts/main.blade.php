@@ -8,7 +8,6 @@
         <meta name="description" content="{{ FrontPage::getDescription() }}" />
         <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
         <meta charset="utf-8">
-        <meta name="robots" content="noindex, nofollow" />
         <link rel="icon" href="/markup/images/favicon.ico" type="image/x-icon">
         <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:400%7CPoppins:300,400,500,600">
         <link rel="stylesheet" href="/markup/css/bootstrap.css">
