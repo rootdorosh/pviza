@@ -26,19 +26,6 @@
                     <h5>{{ $blog->title  }}</h5>
                     {!! $blog->description !!}
 
-                    <div class="post-creative-footer">
-                        <div class="post-creative-footer-inner">
-                            <p>{{ t('share-this-post')  }}</p>
-                            <div>
-                                <ul class="list-inline list-inline-xs">
-                                    <li><a class="icon icon-xxs icon-filled icon-filled-brand icon-circle fa fa-facebook" href="#"></a></li>
-                                    <li><a class="icon icon-xxs icon-filled icon-filled-brand icon-circle fa fa-google-plus" href="#"></a></li>
-                                    <li><a class="icon icon-xxs icon-filled icon-filled-brand icon-circle fa fa-twitter" href="#"></a></li>
-                                    <li><a class="icon icon-xxs icon-filled icon-filled-brand icon-circle fa fa-pinterest-p" href="#"></a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </article>
 
                 @if (!empty($related))
