@@ -52,7 +52,7 @@
                               id="form-resume"
                               action="{{ r('front.resume.send') }}">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <input type="hidden" name="vacancy_id" value="{{ $vacancy->vacancy_id }}">
+                            <input type="hidden" name="vacancy_id" value="{{ $vacancy->id }}">
                             <h4>{{ t('resume.form.title') }}</h4>
                             <div class="form-wrap">
                                 <label class="form-label" for="resume-name">{{ t('resume.form.fields.name') }}</label>
