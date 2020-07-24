@@ -117,5 +117,8 @@
         <script src="/markup/js/core.min.js"></script>
         <script src="/markup/js/script.js"></script>
         <script src="/markup/js/dev.js"></script>
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+        <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f0eacb888f281a5"></script>
+
     </body>
 </html>
