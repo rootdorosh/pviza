@@ -8,16 +8,6 @@
     </div>
 
     <div class="row">
-        <div class="col-sm-9">
-            <!--@content1-->
-            <!--@content2-->
-            <!--@content3-->
-            <!--@content4-->
-            <!--@content5-->
-            <!--@content6-->
-            <!--@content7-->
-            <!--@content8-->
-        </div>
         <div class="col-sm-3">
             <!--@right1-->
             <!--@right2-->
@@ -28,5 +18,15 @@
             <!--@right7-->
             <!--@right8-->
         </div>
+        <div class="col-sm-9">
+            <!--@content1-->
+            <!--@content2-->
+            <!--@content3-->
+            <!--@content4-->
+            <!--@content5-->
+            <!--@content6-->
+            <!--@content7-->
+            <!--@content8-->
+        </div>
     </div>
-</div>    
+</div>

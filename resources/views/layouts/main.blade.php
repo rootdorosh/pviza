@@ -13,6 +13,17 @@
         <link rel="stylesheet" href="/markup/css/bootstrap.css">
         <link rel="stylesheet" href="/markup/css/fonts.css">
         <link rel="stylesheet" href="/markup/css/style.css" id="main-styles-link">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-79773012-1"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-79773012-1');
+        </script>
+
     </head>
     <body>
         <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
