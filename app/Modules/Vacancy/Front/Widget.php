@@ -72,6 +72,7 @@ class Widget extends WidgetBase
         $count = $this->vacancyFetchService->getCountItems([
             'q' => request()->input('q'),
         ]);
+        $count = 1000;
 
         if (isset($_GET['t'])) {
             dd($items);
